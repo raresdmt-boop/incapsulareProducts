@@ -1,6 +1,6 @@
 package app.orders;
 
-public class Orders {
+public class Order {
     private int id;
     private int customerId;
     private int amount;
@@ -10,10 +10,10 @@ public class Orders {
     private String orderDate;
     private String orderStatus;
 
-    public Orders(){
+    public Order(){
         System.out.println("Constructor fara parametri");
     }
-    public Orders(String line){
+    public Order(String line){
         String[] props = line.split(",");
         this.id = Integer.parseInt(props[0]);
         this.customerId = Integer.parseInt(props[1]);
@@ -24,7 +24,7 @@ public class Orders {
         this.orderDate = props[6];
         this.orderStatus = props[7];
     }
-    public Orders(int id, int customerId, int amount, String shippingAddress, String orderAddress, String orderEmail, String orderDate, String orderStatus){
+    public Order(int id, int customerId, int amount, String shippingAddress, String orderAddress, String orderEmail, String orderDate, String orderStatus){
         this.id = id;
         this.customerId = customerId;
         this.amount = amount;

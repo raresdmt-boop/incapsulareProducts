@@ -1,16 +1,20 @@
 package app.products;
 
+import app.customers.Customer;
+import app.orders.Order;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class ProductsService {
+public class ProductService {
     private File productsFile;
-    private ArrayList<Products> productList;
+    private ArrayList<Product> productList;
 
-    public ProductsService() {
+    public ProductService() {
         this.productList = new ArrayList<>();
         productsFile = new File("C:\\mycode\\incapsulare\\teorie\\ProductsApp\\src\\app\\products\\products.txt");
         loadProducts();
@@ -19,6 +23,14 @@ public class ProductsService {
     public String descriereProdus(int id){
         return productList.get(id).toString();
     }
+    public String getProductNameById(int productId){
+        for(int i = 0; i < productList.size(); i++){
+            if(productList.get(i).getID() == productId){
+                return productList.get(i).getName();
+            }
+        }return null;
+    }
+
 
 
     @Override
@@ -38,7 +50,7 @@ public class ProductsService {
             while(sc.hasNextLine()){
                 String line = sc.nextLine();
                 try{
-                    this.productList.add(new Products(line));
+                    this.productList.add(new Product(line));
                 }catch(Exception e){
                     System.out.println(e.getMessage());
                 }

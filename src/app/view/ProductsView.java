@@ -1,19 +1,34 @@
 package app.view;
 
-import app.customers.Customers;
-import app.customers.CustomersService;
+import app.customers.Customer;
+import app.orderDetails.OrderDetailsService;
+import app.orders.Order;
+import app.orders.OrderService;
+import app.products.ProductService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
 public class ProductsView {
-//    ProductsService productsService = new ProductsService();
-//    OrdersService ordersService = new OrdersService();
-//    OrderDetailsService orderDetailsService = new OrderDetailsService();
-    CustomersService customersService = new CustomersService();
-    Customers logat = null;
-    Scanner sc = new Scanner(System.in);
+    private ProductService productService;
+    private OrderService orderService;
+    private OrderDetailsService orderDetailsService;
+    private Customer logat = null;
+    private Scanner sc;
 
+    public  ProductsView(){
+
+        this.productService = new ProductService();
+        this.orderService = new OrderService();
+        this.orderDetailsService = new OrderDetailsService();
+        this.sc = new Scanner(System.in);
+
+        logat = new Customer();
+        logat.setId(145);
+        logat.setFullName("John Doe");
+    }
     public void play() {
 
         boolean continua = true;
@@ -33,9 +48,18 @@ public class ProductsView {
             }
             switch (alegere) {
                 case 1:
-                    login();
                     break;
                 case 2:
+                    break;
+                case 3:
+                    seeOrders(logat);
+                    break;
+                case 4:
+                    displayOrderProducts(logat);
+                    break;
+                default:
+                    System.out.println("Iesire din meniu");
+                    break;
 
             }
 
@@ -45,8 +69,8 @@ public class ProductsView {
     void meniuInitial(){
         System.out.println("1-> Login.");
         System.out.println("2-> Register.");
-        System.out.println("3-> Orders.");
-        System.out.println("4-> Order Details.");
+        System.out.println("3-> See orders.");
+        System.out.println("4-> See order products.");
         System.out.println("5-> Edit Order.");
         System.out.println("6-> Delete Order.");
         System.out.println("7-> New Order.");
@@ -58,35 +82,69 @@ public class ProductsView {
         System.out.println("0/any other number-> Exit. ");
     }
 
-    void login(){
-        System.out.println("Insert email: ");
-        String email = sc.nextLine();
-        System.out.println("Insert password: ");
-        String password = sc.nextLine();
-        logat = customersService.getCustomer(email, password);
-        if(logat != null){
-            System.out.println("Login Successfull");
-        }else{
-            System.out.println("Login Failed");
+//    void login(){
+//        System.out.println("Insert email: ");
+//        String email = sc.nextLine();
+//        System.out.println("Insert password: ");
+//        String password = sc.nextLine();
+//        logat = customerService.getCustomer(email, password);
+//        if(logat != null){
+//            System.out.println("Login Successfull");
+//        }else{
+//            System.out.println("Login Failed");
+//        }
+//
+//    }
+//    void register(){
+//
+//        System.out.println("Insert email: ");
+//        String email = sc.nextLine();
+//        System.out.println("Insert password: ");
+//        String password = sc.nextLine();
+//        System.out.println("Insert full name: ");
+//        String fullName = sc.nextLine();
+//        System.out.println("Insert billing address: ");
+//        String billingAddress = sc.nextLine();
+//        System.out.println("Insert shipping address: ");
+//        String defaultShippingAddress = sc.nextLine();
+//        System.out.println("Insert phone number: ");
+//        String phone = sc.nextLine();
+//        customerService.createCustomer(email, password, fullName, billingAddress, defaultShippingAddress, phone);
+//
+//    }
+    void seeOrders(Customer customer){
+        ArrayList<Order> customerOrderList= this.orderService.getCustomerOrders(customer);
+        System.out.println("Customer orders are:");
+        for(Order order:customerOrderList){
+            System.out.println(order.toString());
+        }
+    }
+    void displayOrderProducts(Customer customer){
+        System.out.println("Enter Order Number:");
+        Order order = orderService.getOrderbyID(sc.nextInt());
+        if (order == null) {
+            System.out.println("Order number doesn't exist!");
+            return;
+        }else if(customer.getId() != order.getCustomerId()) {
+            System.out.println("Order number" + order.getId() + "does not belong to customer");
+            return;
+        }
+        List<Integer> productIdList = orderDetailsService.orderProductID(order);
+        if(productIdList.isEmpty()){
+            System.out.println("Nu exista produse in aceasta comanda");
+            return;
+        }
+        System.out.println("Produsele din comanda sunt:");
+        for (Integer integer : productIdList) {
+            System.out.println(productService.getProductNameById(integer));
         }
 
-    }
-    void register(){
-        System.out.println("Insert email: ");
-        String email = sc.nextLine();
-        System.out.println("Insert password: ");
-        String password = sc.nextLine();
-        System.out.println("Insert full name: ");
-        String fullName = sc.nextLine();
-        System.out.println("Insert billing address: ");
-        String billingAddress = sc.nextLine();
-        System.out.println("Insert shipping address: ");
-        String defaultShippingAddress = sc.nextLine();
-        System.out.println("Insert phone number: ");
-        String phone = sc.nextLine();
-        customersService.createCustomer(email, password, fullName, billingAddress, defaultShippingAddress, phone);
+
+
 
     }
+
+
 
 
 }

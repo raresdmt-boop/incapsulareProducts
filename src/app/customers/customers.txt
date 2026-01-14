@@ -3,3 +3,4 @@
 147,client147@email.com,pass147,Georgescu Andrei,Strada Florilor 8,Strada Florilor 8,0734567147
 148,client148@email.com,pass148,Dumitrescu Ana,Calea Victoriei 120,Calea Victoriei 120,0745678148
 149,client149@email.com,pass149,Marinescu Vlad,Soseaua Nordului 88,Soseaua Nordului 88,0756789149
+3824,rares,rares,rares,rares,rares,rares

@@ -1,17 +1,35 @@
 package app.orders;
 
+import app.customers.Customer;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class OrdersService {
-    private ArrayList<Orders> orderList;
+public class OrderService {
+    private ArrayList<Order> orderList;
     private File ordersFile;
 
-    public OrdersService() {
+    public OrderService() {
         orderList = new ArrayList<>();
         ordersFile = new File("C:\\mycode\\incapsulare\\teorie\\ProductsApp\\src\\app\\Orders\\orders.txt");
         loadOrdersService();
+    }
+
+    public ArrayList<Order> getCustomerOrders(Customer customer){
+        ArrayList<Order> customerOrderList = new ArrayList<>();
+        for(int i=0;i<orderList.size();i++){
+            if(orderList.get(i).getCustomerId()==customer.getId()){
+                customerOrderList.add(orderList.get(i));
+            }
+        }return customerOrderList;
+    }
+    public Order getOrderbyID(int orderId){
+        for(int i=0;i<orderList.size();i++){
+            if(orderList.get(i).getId()==orderId){
+                return orderList.get(i);
+            }
+        }return null;
     }
 
     private void loadOrdersService() {
@@ -20,7 +38,7 @@ public class OrdersService {
             while(sc.hasNextLine()){
                 String line = sc.nextLine();
                 try{
-                    this.orderList.add(new Orders(line));
+                    this.orderList.add(new Order(line));
                 }catch(Exception e){
                     System.out.println(e.getMessage());
                 }

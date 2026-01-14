@@ -1,6 +1,6 @@
 package app.products;
 
-public class Products {
+public class Product {
 
     private int id;
     private int sku;
@@ -10,7 +10,7 @@ public class Products {
     private String descriptions;
     private int stock;
 
-    public Products(String line) {
+    public Product(String line) {
         String[] props = line.split(",");
         this.id = Integer.parseInt(props[0]);
         this.sku = Integer.parseInt(props[1]);
@@ -20,7 +20,7 @@ public class Products {
         this.descriptions = props[5];
         this.stock = Integer.parseInt(props[6]);
     }
-    public Products(int id, int sku, String name, double price, double weight, String descriptions, int stock) {
+    public Product(int id, int sku, String name, double price, double weight, String descriptions, int stock) {
         this.id = id;
         this.sku = sku;
         this.name = name;
@@ -29,7 +29,7 @@ public class Products {
         this.descriptions = descriptions;
         this.stock = stock;
     }
-    public Products() {
+    public Product() {
         System.out.println("Constructor fara parametri");
     }
 

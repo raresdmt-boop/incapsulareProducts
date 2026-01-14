@@ -1,13 +1,17 @@
 package app;
 
+import app.orderDetails.OrderDetails;
+import app.orderDetails.OrderDetailsService;
+import app.orders.Order;
+import app.orders.OrderService;
 import app.view.ProductsView;
 
 public class Application {
 
     static void main() {
 
-        ProductsView pv = new ProductsView();
-        pv.play();
+        ProductsView productsView = new ProductsView();
+        productsView.play();
 
     }
 }

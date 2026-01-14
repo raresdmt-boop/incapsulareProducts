@@ -1,6 +1,6 @@
-1,2001,Laptop Office,3200.0,2.10,Laptop pentru birou,15
-2,2002,Laptop Gaming,5800.0,2.80,Laptop pentru jocuri,8
-3,2003,Mouse Wireless,120.0,0.09,Mouse fara fir,60
+2001,2001,Laptop Office,3200.0,2.10,Laptop pentru birou,15
+2002,2002,Laptop Gaming,5800.0,2.80,Laptop pentru jocuri,8
+2003,2003,Mouse Wireless,120.0,0.09,Mouse fara fir,60
 4,2004,Tastatura Mecanica,350.0,0.85,Tastatura mecanica RGB,25
 5,2005,Monitor 24 Inch,900.0,4.20,Monitor Full HD,18
 6,2006,Monitor 27 Inch,1400.0,5.60,Monitor QHD,12
@@ -10,7 +10,7 @@
 10,2010,SSD 1TB,480.0,0.10,SSD rapid,35
 11,2011,Telefon Smart Basic,1200.0,0.18,Telefon pentru utilizare zilnica,30
 12,2012,Telefon Smart Pro,4200.0,0.21,Telefon performanta ridicata,12
-13,2013,Casti Wireless,260.0,0.15,Casti bluetooth,50
+2013,2013,Casti Wireless,260.0,0.15,Casti bluetooth,50
 14,2014,Boxa Portabila,300.0,0.60,Boxa cu bass puternic,22
 15,2015,Smartwatch Fitness,450.0,0.08,Ceas pentru sport,28
 16,2016,Tableta 10 Inch,980.0,0.48,Tableta multimedia,20

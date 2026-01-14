@@ -1,9 +1,13 @@
 package app.orderDetails;
 
+import app.orders.Order;
+import app.products.Product;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class OrderDetailsService {
@@ -15,6 +19,19 @@ public class OrderDetailsService {
         orderDetailsFile = new File("C:\\mycode\\incapsulare\\teorie\\ProductsApp\\src\\app\\OrderDetails\\orderDetails.txt");
         loadOrderDetails();
     }
+
+    public String descriereOrderDetails(int id){
+        return orderDetailsList.get(id).toString();
+    }
+    public List<Integer> orderProductID(Order order){
+        List<Integer> productIdList = new ArrayList<>();
+        for(int i=0;i<orderDetailsList.toArray().length;i++){
+            if(orderDetailsList.get(i).getOrderID()==order.getId()){
+                productIdList.add(orderDetailsList.get(i).getProductID());
+            }
+        }return productIdList;
+    }
+
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
@@ -25,11 +42,6 @@ public class OrderDetailsService {
         sb.append(orderDetailsList.get(i).toString());
         return sb.toString();
     }
-
-    public String descriereOrderDetails(int id){
-        return orderDetailsList.get(id).toString();
-    }
-
     private void loadOrderDetails() {
         try {
             Scanner sc = new Scanner(orderDetailsFile);

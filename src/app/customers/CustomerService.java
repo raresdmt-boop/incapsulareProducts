@@ -7,34 +7,38 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class CustomersService {
-    private ArrayList<Customers> customersList;
+public class CustomerService {
+    private ArrayList<Customer> customerList;
     private File customersFile;
+    public String name="test";
 
-    public CustomersService(){
-        this.customersList = new ArrayList<>();
+    public CustomerService(){
+        this.customerList = new ArrayList<>();
         customersFile = new File("C:\\mycode\\incapsulare\\teorie\\ProductsApp\\src\\app\\Customers\\customers.txt");
         loadCustomers();
+        String name="test2";
+
+        System.out.println(this.name);
     }
 
-    public Customers getCustomer(String email, String password){
-        for(Customers customer : customersList){
+    public Customer getCustomer(String email, String password){
+        for(Customer customer : customerList){
             if(customer.getEmail().equals(email) && customer.getPassword().equals(password)){
                 return customer;
             }
         }return null;
     }
-    public Customers getCustomerById(int id){
-        for(int i=0;i<customersList.size();i++){
-            if(customersList.get(i).getId()==id){
-                return customersList.get(i);
+    public Customer getCustomerById(int id){
+        for(int i = 0; i< customerList.size(); i++){
+            if(customerList.get(i).getId()==id){
+                return customerList.get(i);
             }
 
         }return null;
     }
     public void createCustomer(String email, String password, String fullName, String billingAddress, String defaultShippingAddress, String phone){
         int id = generateID();
-        customersList.add(new Customers(id, email, password, fullName, billingAddress, defaultShippingAddress, phone));
+        customerList.add(new Customer(id, email, password, fullName, billingAddress, defaultShippingAddress, phone));
         saveCustomers();
     }
 
@@ -57,10 +61,10 @@ public class CustomersService {
         StringBuilder sb;
         sb = new StringBuilder();
         int i=0;
-        for(;i<customersList.size()-1;i++){
-            sb.append(customersList.get(i).toString()+"\n");
+        for(; i< customerList.size()-1; i++){
+            sb.append(customerList.get(i).toString()+"\n");
         }
-        sb.append(customersList.get(i).toString());
+        sb.append(customerList.get(i).toString());
         return sb.toString();
     }
     private void loadCustomers(){
@@ -69,7 +73,7 @@ public class CustomersService {
             while(scanner.hasNextLine()){
                 String line = scanner.nextLine();
                 try{
-                    customersList.add(new Customers(line));
+                    customerList.add(new Customer(line));
                 }catch(Exception e){
                     e.printStackTrace();
                 }

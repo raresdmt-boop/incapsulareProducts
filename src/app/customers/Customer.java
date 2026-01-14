@@ -1,6 +1,6 @@
 package app.customers;
 
-public class Customers {
+public class Customer {
 
     private int id;
     private String email;
@@ -10,7 +10,7 @@ public class Customers {
     private String defaultShippingAddress;
     private String phone;
 
-    public Customers (String line){
+    public Customer(String line){
         String[] props = line.split(",");
         this.id = Integer.parseInt(props[0]);
         this.email = props[1];
@@ -20,7 +20,7 @@ public class Customers {
         this.defaultShippingAddress = props[5];
         this.phone = props[6];
     }
-    public Customers (int id, String email, String password, String fullName, String billingAddress, String defaultShippingAddress, String phone){
+    public Customer(int id, String email, String password, String fullName, String billingAddress, String defaultShippingAddress, String phone){
         this.id = id;
         this.email = email;
         this.password = password;
@@ -29,7 +29,7 @@ public class Customers {
         this.defaultShippingAddress = defaultShippingAddress;
         this.phone = phone;
     }
-    public Customers (){
+    public Customer(){
         System.out.println("Constructor fara parametri");
     }
 

@@ -1,0 +1,100 @@
+1,2001,Laptop Office,3200.0,2.10,Laptop pentru birou,15
+2,2002,Laptop Gaming,5800.0,2.80,Laptop pentru jocuri,8
+3,2003,Mouse Wireless,120.0,0.09,Mouse fara fir,60
+4,2004,Tastatura Mecanica,350.0,0.85,Tastatura mecanica RGB,25
+5,2005,Monitor 24 Inch,900.0,4.20,Monitor Full HD,18
+6,2006,Monitor 27 Inch,1400.0,5.60,Monitor QHD,12
+7,2007,Imprimanta Laser,850.0,6.50,Imprimanta alb negru,10
+8,2008,Scanner Documente,620.0,3.40,Scanner rapid documente,7
+9,2009,Hard Disk Extern 1TB,320.0,0.25,Stocare externa,40
+10,2010,SSD 1TB,480.0,0.10,SSD rapid,35
+11,2011,Telefon Smart Basic,1200.0,0.18,Telefon pentru utilizare zilnica,30
+12,2012,Telefon Smart Pro,4200.0,0.21,Telefon performanta ridicata,12
+13,2013,Casti Wireless,260.0,0.15,Casti bluetooth,50
+14,2014,Boxa Portabila,300.0,0.60,Boxa cu bass puternic,22
+15,2015,Smartwatch Fitness,450.0,0.08,Ceas pentru sport,28
+16,2016,Tableta 10 Inch,980.0,0.48,Tableta multimedia,20
+17,2017,Camera Web HD,180.0,0.12,Camera pentru video call,35
+18,2018,Router WiFi,270.0,0.40,Router wireless,18
+19,2019,Stick USB 64GB,60.0,0.03,Memorie USB,100
+20,2020,Incarcator Rapid,90.0,0.20,Incarcator fast charge,70
+21,2021,Scaun Birou,650.0,12.00,Scaun ergonomic,14
+22,2022,Birou Lemn,1200.0,25.00,Birou pentru birou acasa,6
+23,2023,Lampa Birou LED,140.0,0.90,Lampa cu lumina reglabila,40
+24,2024,Raft Carti,480.0,18.00,Raft din lemn,9
+25,2025,Dulap Haine,2100.0,65.00,Dulap incapator,4
+26,2026,Saltea Ortopedica,1600.0,28.00,Saltea confort ridicat,7
+27,2027,Perna Memory,180.0,1.20,Perna cu spuma memory,32
+28,2028,Patura Groasa,220.0,2.50,Patura pentru iarna,25
+29,2029,Aspirator,750.0,6.80,Aspirator putere mare,11
+30,2030,Aspirator Robot,1900.0,3.20,Aspirator inteligent,5
+31,2031,Tricou Bumbac,80.0,0.25,Tricou casual,120
+32,2032,Hanorac,180.0,0.60,Hanorac calduros,70
+33,2033,Geaca Iarna,520.0,1.80,Geaca impermeabila,30
+34,2034,Blugi,210.0,0.70,Blugi clasici,55
+35,2035,Adidasi Sport,380.0,0.90,Incaltaminte sport,40
+36,2036,Pantofi Eleganti,420.0,1.10,Pantofi piele,22
+37,2037,Sosete Set,45.0,0.15,Set sosete bumbac,150
+38,2038,Centura Piele,95.0,0.30,Centura eleganta,60
+39,2039,Rucsac,260.0,0.85,Rucsac urban,35
+40,2040,Geanta Laptop,300.0,1.20,Geanta protectie laptop,28
+41,2041,Bicicleta MTB,2800.0,14.50,Bicicleta munte,10
+42,2042,Trotineta Electrica,3200.0,12.00,Trotineta urbana,6
+43,2043,Set Gantere,450.0,20.00,Gantere pentru fitness,18
+44,2044,Banda Alergare,4200.0,55.00,Banda pentru alergare,3
+45,2045,Saltea Yoga,120.0,0.90,Saltea fitness,60
+46,2046,Minge Fitness,90.0,1.10,Minge pentru exercitii,45
+47,2047,Coarda Sarit,35.0,0.20,Coarda antrenament,80
+48,2048,Role Copii,320.0,2.50,Role reglabile,15
+49,2049,Casca Protectie,150.0,0.40,Casca pentru sport,25
+50,2050,Ochelari Sport,110.0,0.10,Ochelari protectie UV,35
+51,2051,Cafea Boabe 1kg,120.0,1.00,Cafea premium,40
+52,2052,Cafea Macinata,65.0,0.50,Cafea aromata,55
+53,2053,Ceai Verde,25.0,0.20,Ceai natural,90
+54,2054,Ceai Negru,22.0,0.20,Ceai clasic,85
+55,2055,Zahar Brun,18.0,1.00,Zahar nerafinat,70
+56,2056,Miere Poliflora,35.0,0.50,Miere naturala,60
+57,2057,Chocolate Neagra,15.0,0.10,Chocolate intensa,100
+58,2058,Biscuiti Ovaz,12.0,0.30,Biscuiti sanatosi,110
+59,2059,Chips Porumb,10.0,0.15,Snack crocant,130
+60,2060,Alune Prajite,14.0,0.20,Alune sarate,120
+61,2061,Sticla Apa Reutilizabila,40.0,0.35,Sticla eco,75
+62,2062,Termos,85.0,0.60,Termos inox,50
+63,2063,Set Tacamuri,150.0,1.80,Set inox,20
+64,2064,Tigaie Antiaderenta,180.0,1.40,Tigaie pentru gatit,22
+65,2065,Oala Inox,220.0,2.30,Oala durabila,18
+66,2066,Blender,260.0,3.10,Blender electric,14
+67,2067,Prajitor Paine,190.0,2.20,Prajitor electric,16
+68,2068,Fierbator Apa,140.0,1.30,Fierbator rapid,30
+69,2069,Cuptor Microunde,520.0,11.00,Cuptor compact,9
+70,2070,Frigider Mini,850.0,18.00,Frigider de birou,6
+71,2071,Caiet A4,12.0,0.30,Caiet pentru scoala,200
+72,2072,Agenda,35.0,0.40,Agenda zilnica,90
+73,2073,Pix Set,20.0,0.10,Set pixuri,150
+74,2074,Marker Permanent,8.0,0.05,Marker rezistent,120
+75,2075,Hartie Copiator,28.0,2.50,Hartie A4,80
+76,2076,Mapa Documente,18.0,0.25,Mapa birou,65
+77,2077,Calculator Birou,55.0,0.35,Calculator clasic,45
+78,2078,Suport Laptop,110.0,1.10,Suport reglabil,30
+79,2079,Tablou Canvas,260.0,2.80,Decor perete,12
+80,2080,Ceas Perete,140.0,1.50,Ceas modern,18
+81,2081,Parfum Barbati,320.0,0.50,Parfum intens,25
+82,2082,Parfum Femei,340.0,0.45,Parfum floral,22
+83,2083,Sampon,22.0,0.40,Sampon revitalizant,90
+84,2084,Balsam Par,24.0,0.40,Balsam hidratant,85
+85,2085,Sapun Lichid,15.0,0.50,Sapun antibacterian,100
+86,2086,Crema Maini,18.0,0.15,Crema hidratanta,75
+87,2087,Periuta Dinti,10.0,0.05,Periuta clasica,120
+88,2088,Pasta Dinti,14.0,0.12,Pasta mentolata,110
+89,2089,Prosop Baie,45.0,0.80,Prosop bumbac,60
+90,2090,Set Prosoape,120.0,2.40,Set baie,30
+91,2091,Joc Boardgame,180.0,1.60,Joc de societate,20
+92,2092,Puzzle 1000 Piese,90.0,0.90,Puzzle adulti,35
+93,2093,Carte Fictiune,55.0,0.50,Carte beletristica,40
+94,2094,Carte Business,75.0,0.55,Carte dezvoltare,28
+95,2095,Agenda Copii,30.0,0.35,Agenda scolara,50
+96,2096,Jucarie Plus,65.0,0.70,Jucarie moale,45
+97,2097,Masinuta Copii,40.0,0.25,Jucarie masina,70
+98,2098,Set Lego Mic,120.0,0.80,Set constructie,25
+99,2099,Drone Mini,480.0,0.60,Drone usoara,10
+100,2100,Camera Actiune,750.0,0.30,Camera sport,8

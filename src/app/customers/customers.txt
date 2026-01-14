@@ -1,0 +1,5 @@
+145,client145@email.com,pass145,Popescu Ion,Strada Lalelelor 10,Strada Lalelelor 10,0712345145
+146,client146@email.com,pass146,Ionescu Maria,Bulevardul Unirii 45,Bulevardul Unirii 45,0723456146
+147,client147@email.com,pass147,Georgescu Andrei,Strada Florilor 8,Strada Florilor 8,0734567147
+148,client148@email.com,pass148,Dumitrescu Ana,Calea Victoriei 120,Calea Victoriei 120,0745678148
+149,client149@email.com,pass149,Marinescu Vlad,Soseaua Nordului 88,Soseaua Nordului 88,0756789149

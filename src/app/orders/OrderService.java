@@ -31,6 +31,10 @@ public class OrderService {
             }
         }return null;
     }
+    public Order createOrder(Customer customer){
+        int customerid=customer.getId()
+        Order order = new Order(id);
+    }
 
     private void loadOrdersService() {
         try{

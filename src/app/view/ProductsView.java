@@ -145,6 +145,8 @@ public class ProductsView {
     }
 
 
+    void basket(Customer customer){
 
+    }
 
 }

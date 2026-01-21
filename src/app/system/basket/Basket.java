@@ -2,15 +2,25 @@ package app.system.basket;
 
 import app.products.Product;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 
 public class Basket {
 //
     private List<ProductDto> products;
+    private File basketfile;
+
+
 
     public Basket() {
         this.products = new ArrayList<>();
+        basketfile = new File("C:\\mycode\\incapsulare\\teorie\\ProductsApp\\src\\app\\system\\basket\\basket.txt");
+        loadBasket();
     }
     public void addToBasket(ProductDto productDto) {
         if(products.isEmpty()) {
@@ -22,18 +32,22 @@ public class Basket {
         }else{
             productinList.setProductQuantity(productDto.getProductQuantity()+productinList.getProductQuantity());
         }
+
+        saveBasket();
     }
-    public void removeFromBasket(ProductDto productDto){
+    public void removeFromBasket(String name){
         if(products.isEmpty()) {
-            throw new RuntimeException();
+            throw new IllegalArgumentException("Basket is empty");
         }
 
-        ProductDto productinList = findInList(productDto);
+        ProductDto productinList = findInListByName(name);
         if (productinList == null) {
-            throw new RuntimeException();
+            throw new IllegalStateException("Product not found in basket");
         }else {
             products.remove(productinList);
         }
+
+        saveBasket();
     }
     public List<ProductDto> getBasketProducts(){
         return products;
@@ -47,6 +61,7 @@ public class Basket {
         }
     }
 
+
     public int createDtoID(){
         int id = products.size()+1;
         return id;
@@ -59,6 +74,51 @@ public class Basket {
                 return products.get(i);
             }
         }return null;
+    }
+    public ProductDto findInListByName(String name){
+        for(int i = 0; i < products.size(); i++){
+            if(products.get(i).getProductName().equals(name)){
+                return products.get(i);
+            }
+        }return null;
+    }
+
+    @Override
+    public String toString(){
+        StringBuffer sb = new StringBuffer();
+        int i=0;
+        for(;i<products.size()-1;i++){
+            sb.append(products.get(i)+"\n");
+        }
+        sb.append(products.get(i));
+        return sb.toString();
+    }
+
+    private void loadBasket(){
+        try{
+            Scanner scanner = new Scanner(basketfile);
+            while(scanner.hasNextLine()){
+                String line = scanner.nextLine();
+                try{
+                    this.products.add(new ProductDto(line));
+                }catch (Exception e){
+                    throw new RuntimeException(e);
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void saveBasket(){
+        try {
+            FileWriter fw = new FileWriter(basketfile);
+            PrintWriter pw = new PrintWriter(fw);
+            pw.write(this.toString());
+            pw.close();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
 

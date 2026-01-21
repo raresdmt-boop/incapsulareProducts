@@ -54,6 +54,10 @@ public class ProductsView {
                     basket(logat);
                     addToBasket(logat);
                     break;
+                case 34:
+                    basket(logat);
+                    removeFromBasket(logat);
+                    break;
                 default:
                     System.out.println("Iesire din meniu");
                     break;
@@ -77,7 +81,8 @@ public class ProductsView {
         System.out.println("11-> Add Products.");
         System.out.println("12-> Sign out.");
         System.out.println("0/any other number-> Exit. ");
-        System.out.println("33 - basket");
+        System.out.println("33 - basket/add to basket");
+        System.out.println("34 - remove from basket");
     }
 
 //    void login(){
@@ -151,6 +156,11 @@ public class ProductsView {
         ProductDto productDto = new ProductDto(DtoID, product.getID(), product.getName(), product.getPrice(), quantity, customer.getId());
         basket.addToBasket(productDto);
         System.out.println(basket.getBasketProducts());
+    }
+    void removeFromBasket(Customer customer){
+        System.out.println("Ce produs doriti sa stergeti?");
+
+        basket.removeFromBasket(sc.nextLine());
     }
 
 }

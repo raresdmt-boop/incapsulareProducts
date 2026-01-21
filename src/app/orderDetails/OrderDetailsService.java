@@ -1,7 +1,9 @@
 package app.orderDetails;
 
+import app.customers.Customer;
 import app.orders.Order;
 import app.products.Product;
+import app.products.ProductService;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -31,6 +33,18 @@ public class OrderDetailsService {
             }
         }return productIdList;
     }
+    public ArrayList<Product> productsFromOrder(Order order){
+        ArrayList<Product> products = new ArrayList<>();
+        for(int i=0;i<orderDetailsList.toArray().length;i++){
+            if(orderDetailsList.get(i).getOrderID()==order.getId()){
+                ProductService productService = new ProductService();
+                String productname = productService.getProductNameById(orderDetailsList.get(i).getProductID());
+                products.add(productService.getProductByName(productname));
+            }
+        }return products;
+    }
+
+
 
     @Override
     public String toString() {

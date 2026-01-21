@@ -1,9 +1,13 @@
 package app.orders;
 
 import app.customers.Customer;
+import app.orderDetails.OrderDetails;
+import app.orderDetails.OrderDetailsService;
+import app.products.Product;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class OrderService {
@@ -31,10 +35,33 @@ public class OrderService {
             }
         }return null;
     }
-    public Order createOrder(Customer customer){
-        int customerid=customer.getId()
-        Order order = new Order(id);
+
+
+
+    public ArrayList<Product> getBasket(Customer customer){
+        ArrayList<Order> customerOrders = getCustomerOrders(customer);
+        Order basketOrder = null;
+        for(int i=0;i<customerOrders.size();i++){
+            Order order = customerOrders.get(i);
+            if (order.getOrderStatus().contains("BASKET")){
+                basketOrder = order;
+            }
+        }
+        if(basketOrder==null){
+            return new ArrayList<>();
+        }
+        OrderDetailsService orderDetailsService = new OrderDetailsService();
+        return orderDetailsService.productsFromOrder(basketOrder);
     }
+    public void createOrder(Customer customer, Product product){
+        int orderDetailsID=orderList.size()+1000;
+        int orderID=orderList.size()+500;
+        OrderDetails orderDetails = new OrderDetails(orderDetailsID, orderID, product.getID(), product.getPrice(), product.getSKU(), 1);
+        Order bucket = new Order(orderID, customer.getId(), 1000, customer.getDefaultShippingAddress(), customer.getBillingAddress(), customer.getEmail(), "21/01/2026", "BASKET");
+        orderList.add(bucket);
+        saveOrders();
+    }
+
 
     private void loadOrdersService() {
         try{
@@ -51,7 +78,7 @@ public class OrderService {
             System.out.println(e.getMessage());
         }
     }
-    private void saveOrders() throws IOException {
+    private void saveOrders() {
         try {
             FileWriter fw = new FileWriter(ordersFile);
             PrintWriter pw = new PrintWriter(fw);
@@ -62,5 +89,7 @@ public class OrderService {
         }
 
     }
+
+
 
 }

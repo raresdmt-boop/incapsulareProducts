@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class ProductService {
     private File productsFile;
     private ArrayList<Product> productList;
+    private ArrayList<Product> basket;
 
     public ProductService() {
         this.productList = new ArrayList<>();
@@ -30,6 +31,17 @@ public class ProductService {
             }
         }return null;
     }
+
+
+    //todo: metode pt basket
+    public Product getProductByName(String productName){
+        for(int i = 0; i < productList.size(); i++){
+            if(productList.get(i).getName().equals(productName)){
+                return productList.get(i);
+            }
+        }return null;
+    }
+
 
 
 

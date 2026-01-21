@@ -9,10 +9,6 @@ public class Order {
     private String orderEmail;
     private String orderDate;
     private String orderStatus;
-
-    public Order(){
-        System.out.println("Constructor fara parametri");
-    }
     public Order(String line){
         String[] props = line.split(",");
         this.id = Integer.parseInt(props[0]);

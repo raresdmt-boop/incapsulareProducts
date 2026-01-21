@@ -30,7 +30,7 @@ public class Customer {
         this.phone = phone;
     }
     public Customer(){
-        System.out.println("Constructor fara parametri");
+
     }
 
     @Override

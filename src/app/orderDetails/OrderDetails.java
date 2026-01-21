@@ -25,7 +25,6 @@ public class OrderDetails {
         this.sku = sku;
         this.quantity = quantity;
     }
-    public OrderDetails(){System.out.println("Constructor fara parametri");}
 
     @Override
     public String toString(){

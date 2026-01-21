@@ -4,6 +4,7 @@ import app.customers.Customer;
 import app.orderDetails.OrderDetailsService;
 import app.orders.Order;
 import app.orders.OrderService;
+import app.products.Product;
 import app.products.ProductService;
 
 import java.util.ArrayList;
@@ -25,27 +26,15 @@ public class ProductsView {
         this.orderDetailsService = new OrderDetailsService();
         this.sc = new Scanner(System.in);
 
-        logat = new Customer();
-        logat.setId(145);
-        logat.setFullName("John Doe");
+        logat = new Customer(145, "raresdmt@yahoo.com", "1234", "John Doe", "alabala", "alabala", "alabala");
+
     }
     public void play() {
 
         boolean continua = true;
         while (continua) {
             meniuInitial();
-            int alegere;
-            try {
-                alegere = Integer.parseInt(sc.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Introdu un numar valid!");
-                continue;
-            }
-
-            if (logat == null && alegere != 1 && alegere != 0 && alegere != 2) {
-                System.out.println("Trebuie sa fii logat.");
-                continue;
-            }
+            int alegere=Integer.parseInt(sc.nextLine());
             switch (alegere) {
                 case 1:
                     break;
@@ -56,6 +45,9 @@ public class ProductsView {
                     break;
                 case 4:
                     displayOrderProducts(logat);
+                    break;
+                case 33:
+                    basket(logat);
                     break;
                 default:
                     System.out.println("Iesire din meniu");
@@ -80,6 +72,7 @@ public class ProductsView {
         System.out.println("11-> Add Products.");
         System.out.println("12-> Sign out.");
         System.out.println("0/any other number-> Exit. ");
+        System.out.println("33 - basket");
     }
 
 //    void login(){
@@ -138,15 +131,41 @@ public class ProductsView {
         for (Integer integer : productIdList) {
             System.out.println(productService.getProductNameById(integer));
         }
-
-
-
-
     }
 
 
-    void basket(Customer customer){
+    void basket (Customer customer){
+        ArrayList<Product> basketProducts = new ArrayList<>();
+        basketProducts = orderService.getBasket(customer);
+        boolean continua=true;
+        while (continua) {
 
+            if (basketProducts.isEmpty()) {
+                System.out.println("Nu exista produse in cos");
+            }else{
+                System.out.println("Produsele din cos:\n"+basketProducts);
+            }
+            System.out.println("Scrieti numele produsului pe care doriti sa il adaugati");
+            String numeProdus = sc.nextLine();
+            System.out.println("Add or default");
+
+            int alegere = Integer.parseInt(sc.nextLine());
+            System.out.println("Add or default") ;
+            switch (alegere) {
+                case 1:
+                    addProductToBasket(customer, basketProducts, productService.getProductByName(numeProdus));
+                    break;
+                default:
+                    continua=false;
+                    break;
+            }
+
+        }
+    }
+
+    private void addProductToBasket(Customer customer, ArrayList<Product> basketProducts, Product product){
+        orderService.createOrder(customer, product);
+        basketProducts.add(product);
     }
 
 }

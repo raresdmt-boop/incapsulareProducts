@@ -29,9 +29,7 @@ public class Product {
         this.descriptions = descriptions;
         this.stock = stock;
     }
-    public Product() {
-        System.out.println("Constructor fara parametri");
-    }
+
 
     @Override
     public String toString(){

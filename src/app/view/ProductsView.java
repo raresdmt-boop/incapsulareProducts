@@ -6,6 +6,8 @@ import app.orders.Order;
 import app.orders.OrderService;
 import app.products.Product;
 import app.products.ProductService;
+import app.system.basket.Basket;
+import app.system.basket.ProductDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,7 @@ public class ProductsView {
     private ProductService productService;
     private OrderService orderService;
     private OrderDetailsService orderDetailsService;
+    private Basket basket;
     private Customer logat = null;
     private Scanner sc;
 
@@ -25,6 +28,7 @@ public class ProductsView {
         this.orderService = new OrderService();
         this.orderDetailsService = new OrderDetailsService();
         this.sc = new Scanner(System.in);
+        this.basket = new Basket();
 
         logat = new Customer(145, "raresdmt@yahoo.com", "1234", "John Doe", "alabala", "alabala", "alabala");
 
@@ -48,6 +52,7 @@ public class ProductsView {
                     break;
                 case 33:
                     basket(logat);
+                    addToBasket(logat);
                     break;
                 default:
                     System.out.println("Iesire din meniu");
@@ -135,37 +140,17 @@ public class ProductsView {
 
 
     void basket (Customer customer){
-        ArrayList<Product> basketProducts = new ArrayList<>();
-        basketProducts = orderService.getBasket(customer);
-        boolean continua=true;
-        while (continua) {
-
-            if (basketProducts.isEmpty()) {
-                System.out.println("Nu exista produse in cos");
-            }else{
-                System.out.println("Produsele din cos:\n"+basketProducts);
-            }
-            System.out.println("Scrieti numele produsului pe care doriti sa il adaugati");
-            String numeProdus = sc.nextLine();
-            System.out.println("Add or default");
-
-            int alegere = Integer.parseInt(sc.nextLine());
-            System.out.println("Add or default") ;
-            switch (alegere) {
-                case 1:
-                    addProductToBasket(customer, basketProducts, productService.getProductByName(numeProdus));
-                    break;
-                default:
-                    continua=false;
-                    break;
-            }
-
-        }
+       System.out.println(basket.getBasketProducts());
     }
-
-    private void addProductToBasket(Customer customer, ArrayList<Product> basketProducts, Product product){
-        orderService.createOrder(customer, product);
-        basketProducts.add(product);
+    void addToBasket(Customer customer){
+        System.out.println("Ce produs doriti sa adaugati?");
+        Product product = productService.getProductByName(sc.nextLine());
+        int DtoID = basket.createDtoID();
+        System.out.println("Ce cantitate doriti sa adaugati?");
+        int quantity = sc.nextInt();
+        ProductDto productDto = new ProductDto(DtoID, product.getID(), product.getName(), product.getPrice(), quantity, customer.getId());
+        basket.addToBasket(productDto);
+        System.out.println(basket.getBasketProducts());
     }
 
 }

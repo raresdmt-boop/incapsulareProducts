@@ -4,14 +4,13 @@ import app.customers.Customer;
 
 public class ProductDto {
 
-    private int customerId;
     private int id;
     private int productId;
     private String productName;
     private double productPrice;
     private int productQuantity;
 
-    public ProductDto(int id, int productId, String productName, double pret, int quantity, int customerId) {
+    public ProductDto(int id, int productId, String productName, double pret, int quantity) {
         this.id = id;
         this.productId = productId;
         this.productName = productName;
@@ -25,6 +24,7 @@ public class ProductDto {
         this.productName = props[2];
         this.productPrice = Double.parseDouble(props[3]);
         this.productQuantity = Integer.parseInt(props[4]);
+
     }
 
     public int getId() {

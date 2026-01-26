@@ -1,7 +1,5 @@
 package app.system.basket;
 
-import app.products.Product;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -14,10 +12,19 @@ public class Basket {
 //
     private List<ProductDto> products;
     private File basketfile;
+    private int customerId;
+
+    public int getCustomerId() {
+        return customerId;
+    }
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
 
 
 
-    public Basket() {
+    public Basket(int customerId) {
+        this.customerId = customerId;
         this.products = new ArrayList<>();
         basketfile = new File("C:\\mycode\\incapsulare\\teorie\\ProductsApp\\src\\app\\system\\basket\\basket.txt");
         loadBasket();
@@ -49,6 +56,17 @@ public class Basket {
 
         saveBasket();
     }
+    public void editBasketQuantity(String name, int quantity){
+        if(products.isEmpty()) {
+            throw new IllegalArgumentException("Basket is empty");
+        }
+        ProductDto productinList = findInListByName(name);
+        if (productinList == null) {
+            throw new IllegalArgumentException("Product not found in basket");
+        }else{
+            productinList.setProductQuantity(quantity);
+        }
+    }
     public List<ProductDto> getBasketProducts(){
         return products;
     }
@@ -63,8 +81,7 @@ public class Basket {
 
 
     public int createDtoID(){
-        int id = products.size()+1;
-        return id;
+        return products.size()+1;
     }
 
 

@@ -43,6 +43,13 @@ public class ProductService {
         }return null;
     }
 
+    public boolean checkProdductDto(ProductDto productDto){
+        for(int i = 0; i < productList.size(); i++){
+            if(productList.get(i).getName()==productDto.getProductName()) return true ;
+        }
+        return false;
+    }
+
 
 
 

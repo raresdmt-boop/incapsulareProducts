@@ -28,7 +28,7 @@ public class ProductsView {
         this.orderService = new OrderService();
         this.orderDetailsService = new OrderDetailsService();
         this.sc = new Scanner(System.in);
-        this.basket = new Basket();
+        this.basket = new Basket(145);
 
         logat = new Customer(145, "raresdmt@yahoo.com", "1234", "John Doe", "alabala", "alabala", "alabala");
 
@@ -50,13 +50,20 @@ public class ProductsView {
                 case 4:
                     displayOrderProducts(logat);
                     break;
-                case 33:
-                    basket(logat);
-                    addToBasket(logat);
+                case 12:
+                    basket();
                     break;
-                case 34:
-                    basket(logat);
-                    removeFromBasket(logat);
+                case 13:
+                    basket();
+                    addToBasket();
+                    break;
+                case 14:
+                    basket();
+                    removeFromBasket();
+                    break;
+                case 15:
+                    basket();
+                    editBasketQuantity();
                     break;
                 default:
                     System.out.println("Iesire din meniu");
@@ -79,10 +86,13 @@ public class ProductsView {
         System.out.println("9-> Edit Products.");
         System.out.println("10-> Delete Products.");
         System.out.println("11-> Add Products.");
-        System.out.println("12-> Sign out.");
+        System.out.println("12-> View Basket.");
+        System.out.println("13-> Add to Basket");
+        System.out.println("14-> Remove from Basket.");
+        System.out.println("15-> Edit Basket Amount.");
+        System.out.println("16-> Sign Out.");
         System.out.println("0/any other number-> Exit. ");
-        System.out.println("33 - basket/add to basket");
-        System.out.println("34 - remove from basket");
+
     }
 
 //    void login(){
@@ -144,23 +154,42 @@ public class ProductsView {
     }
 
 
-    void basket (Customer customer){
-       System.out.println(basket.getBasketProducts());
+    void basket (){
+       List<ProductDto> basketlist = basket.getBasketProducts();
+       if(basketlist.isEmpty()){
+           System.out.println("Nu exista product in basket");
+           return;
+       }
+       for(ProductDto productDto:basketlist){
+           System.out.println(productDto.toString());
+       }
     }
-    void addToBasket(Customer customer){
+    void addToBasket(){
         System.out.println("Ce produs doriti sa adaugati?");
         Product product = productService.getProductByName(sc.nextLine());
         int DtoID = basket.createDtoID();
         System.out.println("Ce cantitate doriti sa adaugati?");
         int quantity = sc.nextInt();
-        ProductDto productDto = new ProductDto(DtoID, product.getID(), product.getName(), product.getPrice(), quantity, customer.getId());
+        sc.nextLine();
+        ProductDto productDto = new ProductDto(DtoID, product.getID(), product.getName(), product.getPrice(), quantity);
+        if(!productService.checkProdductDto(productDto)){ System.out.println("Invalid product name.");
+        return;}
         basket.addToBasket(productDto);
-        System.out.println(basket.getBasketProducts());
+        basket();
     }
-    void removeFromBasket(Customer customer){
+    void removeFromBasket(){
         System.out.println("Ce produs doriti sa stergeti?");
-
         basket.removeFromBasket(sc.nextLine());
+        basket();
+    }
+    void editBasketQuantity(){
+        System.out.println("Carui produs doriti sa ii editati cantitatea?");
+        Product product = productService.getProductByName(sc.nextLine());
+        System.out.println("Ce cantitate doriti sa aiba acum?");
+        int quantity = sc.nextInt();
+        sc.nextLine();
+        basket.editBasketQuantity(product.getName(), quantity);
+        basket();
     }
 
 }

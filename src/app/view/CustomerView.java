@@ -14,15 +14,16 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class ProductsView {
-    private ProductService productService;
-    private OrderService orderService;
-    private OrderDetailsService orderDetailsService;
-    private Basket basket;
+public class CustomerView {
+    private final ProductService productService;
+    private final OrderService orderService;
+    private final OrderDetailsService orderDetailsService;
+    private final Basket basket;
     private Customer logat = null;
-    private Scanner sc;
+    private final Scanner sc;
 
-    public  ProductsView(){
+
+    public CustomerView(Customer customer) {
 
         this.productService = new ProductService();
         this.orderService = new OrderService();
@@ -30,25 +31,30 @@ public class ProductsView {
         this.sc = new Scanner(System.in);
         this.basket = new Basket(145);
 
-        logat = new Customer(145, "raresdmt@yahoo.com", "1234", "John Doe", "alabala", "alabala", "alabala");
 
     }
+
     public void play() {
 
         boolean continua = true;
         while (continua) {
             meniuInitial();
-            int alegere=Integer.parseInt(sc.nextLine());
+            int alegere = Integer.parseInt(sc.nextLine());
             switch (alegere) {
                 case 1:
+
                     break;
                 case 2:
+
                     break;
                 case 3:
                     seeOrders(logat);
                     break;
                 case 4:
                     displayOrderProducts(logat);
+                    break;
+                case 7:
+                    createOrder();
                     break;
                 case 12:
                     basket();
@@ -67,14 +73,14 @@ public class ProductsView {
                     break;
                 default:
                     System.out.println("Iesire din meniu");
-                    break;
+                    continua = false;
 
             }
 
         }
     }
 
-    void meniuInitial(){
+    void meniuInitial() {
         System.out.println("1-> Login.");
         System.out.println("2-> Register.");
         System.out.println("3-> See orders.");
@@ -95,55 +101,27 @@ public class ProductsView {
 
     }
 
-//    void login(){
-//        System.out.println("Insert email: ");
-//        String email = sc.nextLine();
-//        System.out.println("Insert password: ");
-//        String password = sc.nextLine();
-//        logat = customerService.getCustomer(email, password);
-//        if(logat != null){
-//            System.out.println("Login Successfull");
-//        }else{
-//            System.out.println("Login Failed");
-//        }
 //
-//    }
-//    void register(){
-//
-//        System.out.println("Insert email: ");
-//        String email = sc.nextLine();
-//        System.out.println("Insert password: ");
-//        String password = sc.nextLine();
-//        System.out.println("Insert full name: ");
-//        String fullName = sc.nextLine();
-//        System.out.println("Insert billing address: ");
-//        String billingAddress = sc.nextLine();
-//        System.out.println("Insert shipping address: ");
-//        String defaultShippingAddress = sc.nextLine();
-//        System.out.println("Insert phone number: ");
-//        String phone = sc.nextLine();
-//        customerService.createCustomer(email, password, fullName, billingAddress, defaultShippingAddress, phone);
-//
-//    }
-    void seeOrders(Customer customer){
-        ArrayList<Order> customerOrderList= this.orderService.getCustomerOrders(customer);
+    void seeOrders(Customer customer) {
+        ArrayList<Order> customerOrderList = this.orderService.getCustomerOrders(customer);
         System.out.println("Customer orders are:");
-        for(Order order:customerOrderList){
+        for (Order order : customerOrderList) {
             System.out.println(order.toString());
         }
     }
-    void displayOrderProducts(Customer customer){
+
+    void displayOrderProducts(Customer customer) {
         System.out.println("Enter Order Number:");
         Order order = orderService.getOrderbyID(sc.nextInt());
         if (order == null) {
             System.out.println("Order number doesn't exist!");
             return;
-        }else if(customer.getId() != order.getCustomerId()) {
+        } else if (customer.getId() != order.getCustomerId()) {
             System.out.println("Order number" + order.getId() + "does not belong to customer");
             return;
         }
         List<Integer> productIdList = orderDetailsService.orderProductID(order);
-        if(productIdList.isEmpty()){
+        if (productIdList.isEmpty()) {
             System.out.println("Nu exista produse in aceasta comanda");
             return;
         }
@@ -154,17 +132,29 @@ public class ProductsView {
     }
 
 
-    void basket (){
-       List<ProductDto> basketlist = basket.getBasketProducts();
-       if(basketlist.isEmpty()){
-           System.out.println("Nu exista product in basket");
-           return;
-       }
-       for(ProductDto productDto:basketlist){
-           System.out.println(productDto.toString());
-       }
+    void basket() {
+        List<ProductDto> basketlist = basket.getBasketProducts();
+        if (basketlist.isEmpty()) {
+            System.out.println("Nu exista product in basket");
+            return;
+        }
+        for (ProductDto productDto : basketlist) {
+            System.out.println(productDto.toString());
+        }
     }
-    void addToBasket(){
+
+    boolean checkStock(){
+        List<ProductDto> basketList = basket.getBasketProducts();
+        for(ProductDto productDto : basketList){
+            if(!productService.checkStock(productDto)){
+                System.out.println(productDto.getProductName()+" nu are suficient stoc");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    void addToBasket() {
         System.out.println("Ce produs doriti sa adaugati?");
         Product product = productService.getProductByName(sc.nextLine());
         int DtoID = basket.createDtoID();
@@ -172,17 +162,21 @@ public class ProductsView {
         int quantity = sc.nextInt();
         sc.nextLine();
         ProductDto productDto = new ProductDto(DtoID, product.getID(), product.getName(), product.getPrice(), quantity);
-        if(!productService.checkProdductDto(productDto)){ System.out.println("Invalid product name.");
-        return;}
+        if (!productService.checkProdductDto(productDto)) {
+            System.out.println("Invalid product name.");
+            return;
+        }
         basket.addToBasket(productDto);
         basket();
     }
-    void removeFromBasket(){
+
+    void removeFromBasket() {
         System.out.println("Ce produs doriti sa stergeti?");
         basket.removeFromBasket(sc.nextLine());
         basket();
     }
-    void editBasketQuantity(){
+
+    void editBasketQuantity() {
         System.out.println("Carui produs doriti sa ii editati cantitatea?");
         Product product = productService.getProductByName(sc.nextLine());
         System.out.println("Ce cantitate doriti sa aiba acum?");
@@ -192,4 +186,53 @@ public class ProductsView {
         basket();
     }
 
+    void createOrder() {
+        basket();
+        //verificam disponibilitatea
+        if(!checkStock()){
+            System.out.println("Schimbati cantitatea produsului.");
+            return;
+        };
+
+        double amount = basket.getAmount();
+        System.out.println("Valoarea totala a cosului este " + amount);
+
+        Order newOrder = orderService.createOrder(logat, amount);
+
+        orderDetailsService.addOrderDetails(basket.getBasketProducts(), newOrder);
+
+        if (newOrder != null) System.out.println("Order has been created");
+
+        updateStock();
+
+
+    }
+
+    void updateStock(){
+        List<ProductDto> basketList = basket.getBasketProducts();
+        for(ProductDto productDto : basketList){
+            productService.editStock(productDto);
+        }
+    }
+    void deleteBasket(){
+        List<ProductDto> basketList = basket.getBasketProducts();
+        for(ProductDto productDto : basketList){
+            basket.removeFromBasket(productDto.getProductName());
+        }
+    }
+
+
+//    void login(){
+//        logat=loginView.playLogin();
+//        if(logat != null){
+//            System.out.println("Login Successfull");
+//        }else{
+//            System.out.println("Login Failed");
+//        }
+//
+//    }
+//        void register(){
+//        loginView.registerCustomer();
+//        System.out.println("Register Successfull");
+//    }
 }

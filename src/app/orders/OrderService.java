@@ -1,18 +1,18 @@
 package app.orders;
 
 import app.customers.Customer;
-import app.orderDetails.OrderDetails;
 import app.orderDetails.OrderDetailsService;
 import app.products.Product;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class OrderService {
-    private ArrayList<Order> orderList;
-    private File ordersFile;
+    private final ArrayList<Order> orderList;
+    private final File ordersFile;
 
     public OrderService() {
         orderList = new ArrayList<>();
@@ -20,61 +20,94 @@ public class OrderService {
         loadOrdersService();
     }
 
-    public ArrayList<Order> getCustomerOrders(Customer customer){
+    public ArrayList<Order> getCustomerOrders(Customer customer) {
         ArrayList<Order> customerOrderList = new ArrayList<>();
-        for(int i=0;i<orderList.size();i++){
-            if(orderList.get(i).getCustomerId()==customer.getId()){
+        for (int i = 0; i < orderList.size(); i++) {
+            if (orderList.get(i).getCustomerId() == customer.getId()) {
                 customerOrderList.add(orderList.get(i));
             }
-        }return customerOrderList;
+        }
+        return customerOrderList;
     }
-    public Order getOrderbyID(int orderId){
-        for(int i=0;i<orderList.size();i++){
-            if(orderList.get(i).getId()==orderId){
+    public Order getOrderbyID(int orderId) {
+        for (int i = 0; i < orderList.size(); i++) {
+            if (orderList.get(i).getId() == orderId) {
                 return orderList.get(i);
             }
-        }return null;
+        }
+        return null;
     }
 
-
-
-    public ArrayList<Product> getBasket(Customer customer){
+    public ArrayList<Product> getBasket(Customer customer) {
         ArrayList<Order> customerOrders = getCustomerOrders(customer);
         Order basketOrder = null;
-        for(int i=0;i<customerOrders.size();i++){
+        for (int i = 0; i < customerOrders.size(); i++) {
             Order order = customerOrders.get(i);
-            if (order.getOrderStatus().contains("BASKET")){
+            if (order.getOrderStatus().contains("BASKET")) {
                 basketOrder = order;
             }
         }
-        if(basketOrder==null){
+        if (basketOrder == null) {
             return new ArrayList<>();
         }
         OrderDetailsService orderDetailsService = new OrderDetailsService();
         return orderDetailsService.productsFromOrder(basketOrder);
     }
-    public void createOrder(Customer customer, Product product){
-        int orderDetailsID=orderList.size()+1000;
-        int orderID=orderList.size()+500;
-        OrderDetails orderDetails = new OrderDetails(orderDetailsID, orderID, product.getID(), product.getPrice(), product.getSKU(), 1);
-        Order bucket = new Order(orderID, customer.getId(), 1000, customer.getDefaultShippingAddress(), customer.getBillingAddress(), customer.getEmail(), "21/01/2026", "BASKET");
-        orderList.add(bucket);
+    public int generateOrderID() {
+        int id = 0;
+        for (int i = 0; i < orderList.size(); i++) {
+            if (i == orderList.size() - 1) {
+                id = orderList.get(i).getId() + 1;
+            }
+        }
+        return id;
+    }
+    public Order createOrder(Customer customer, double amount) {
+        int id = generateOrderID();
+        int customerID = customer.getId();
+        String shippingAddress = customer.getDefaultShippingAddress();
+        String billingAddress = customer.getBillingAddress();
+        String email = customer.getEmail();
+        String orderDate = "26/01/26";
+        String orderStatus = "Pending Payment";
+
+        Order neworder = new Order(id, customerID, amount, shippingAddress, billingAddress, email, orderDate, orderStatus);
+
+        orderList.add(neworder);
         saveOrders();
+        return neworder;
+    }
+    public double vanzariTotale() {
+        int total = 0;
+        for (Order order : orderList) {
+            total += (int) order.getAmount();
+        }
+        return total;
     }
 
+    @Override
+    public String toString() {
+        StringBuffer sb1 = new StringBuffer();
+        int i = 0;
+        for (; i < orderList.size() - 1; i++) {
+            sb1.append(orderList.get(i).toString() + "\n");
+        }
+        sb1.append(orderList.get(i).toString());
+        return sb1.toString();
+    }
 
     private void loadOrdersService() {
-        try{
+        try {
             Scanner sc = new Scanner(ordersFile);
-            while(sc.hasNextLine()){
+            while (sc.hasNextLine()) {
                 String line = sc.nextLine();
-                try{
+                try {
                     this.orderList.add(new Order(line));
-                }catch(Exception e){
+                } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
@@ -84,11 +117,12 @@ public class OrderService {
             PrintWriter pw = new PrintWriter(fw);
             pw.write(this.toString());
             pw.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
     }
+
 
 
 

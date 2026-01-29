@@ -1,20 +1,14 @@
 package app;
 
-import app.orderDetails.OrderDetails;
-import app.orderDetails.OrderDetailsService;
-import app.orders.Order;
-import app.orders.OrderService;
-import app.products.Product;
-import app.products.ProductService;
-import app.system.basket.ProductDto;
-import app.view.ProductsView;
+import app.admins.AdminService;
+import app.view.LoginView;
 
 public class Application {
 
     static void main() {
 
-        ProductsView productsView = new ProductsView();
-        productsView.play();
+
+        LoginView loginView = new LoginView();
 
     }
 }

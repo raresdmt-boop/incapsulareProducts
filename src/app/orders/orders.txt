@@ -1,10 +1,11 @@
-5001,145,3680,Strada Lalelelor 10,Strada Lalelelor 10,client145@email.com,2025-01-05,PLACED
-5002,146,1840,Bulevardul Unirii 45,Bulevardul Unirii 45,client146@email.com,2025-01-06,SHIPPED
-5003,147,475,Strada Florilor 8,Strada Florilor 8,client147@email.com,2025-01-07,DELIVERED
-5004,148,2950,Calea Victoriei 120,Calea Victoriei 120,client148@email.com,2025-01-08,PLACED
-5005,149,790,Strada Mihai Viteazu 15,Strada Mihai Viteazu 15,client149@email.com,2025-01-09,CANCELLED
-5006,145,4650,Strada Independentei 33,Strada Independentei 33,client145@email.com,2025-01-10,SHIPPED
-5007,146,210,Strada Stefan Cel Mare 77,Strada Stefan Cel Mare 77,client146@email.com,2025-01-11,DELIVERED
-5008,147,660,Strada Libertatii 5,Strada Libertatii 5,client147@email.com,2025-01-12,PLACED
-5009,148,3350,Soseaua Nordului 88,Soseaua Nordului 88,client148@email.com,2025-01-13,SHIPPED
-5010,149,1500,Strada Dorobanti 22,Strada Dorobanti 22,client149@email.com,2025-01-14,DELIVERED
+5001,145,3680.0,Strada Lalelelor 10,Strada Lalelelor 10,client145@email.com,2025-01-05,PLACED
+5002,146,1840.0,Bulevardul Unirii 45,Bulevardul Unirii 45,client146@email.com,2025-01-06,SHIPPED
+5003,147,475.0,Strada Florilor 8,Strada Florilor 8,client147@email.com,2025-01-07,DELIVERED
+5004,148,2950.0,Calea Victoriei 120,Calea Victoriei 120,client148@email.com,2025-01-08,PLACED
+5005,149,790.0,Strada Mihai Viteazu 15,Strada Mihai Viteazu 15,client149@email.com,2025-01-09,CANCELLED
+5006,145,4650.0,Strada Independentei 33,Strada Independentei 33,client145@email.com,2025-01-10,SHIPPED
+5007,146,210.0,Strada Stefan Cel Mare 77,Strada Stefan Cel Mare 77,client146@email.com,2025-01-11,DELIVERED
+5008,147,660.0,Strada Libertatii 5,Strada Libertatii 5,client147@email.com,2025-01-12,PLACED
+5009,148,3350.0,Soseaua Nordului 88,Soseaua Nordului 88,client148@email.com,2025-01-13,SHIPPED
+5010,149,1500.0,Strada Dorobanti 22,Strada Dorobanti 22,client149@email.com,2025-01-14,DELIVERED
+5011,145,520.0,alabala,alabala,raresdmt@yahoo.com,26/01/26,Pending Payment

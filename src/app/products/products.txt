@@ -34,12 +34,12 @@
 34,2034,Blugi,210.0,0.7,Blugi clasici,55
 35,2035,Adidasi Sport,380.0,0.9,Incaltaminte sport,40
 36,2036,Pantofi Eleganti,420.0,1.1,Pantofi piele,22
-37,2037,Sosete Set,45.0,0.15,Set sosete bumbac,150
+2037,37,Sosete Set,45.0,0.15,Set sosete bumbac,150
 38,2038,Centura Piele,95.0,0.3,Centura eleganta,60
 39,2039,Rucsac,260.0,0.85,Rucsac urban,35
 40,2040,Geanta Laptop,300.0,1.2,Geanta protectie laptop,28
 41,2041,Bicicleta MTB,2800.0,14.5,Bicicleta munte,10
-42,2042,Trotineta Electrica,3200.0,12.0,Trotineta urbana,6
+42,2042,Trotineta Electrica,3200.0,12.0,Trotineta urbana,7
 43,2043,Set Gantere,450.0,20.0,Gantere pentru fitness,18
 44,2044,Banda Alergare,4200.0,55.0,Banda pentru alergare,3
 45,2045,Saltea Yoga,120.0,0.9,Saltea fitness,60

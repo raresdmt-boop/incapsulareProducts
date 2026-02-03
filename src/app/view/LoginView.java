@@ -27,39 +27,34 @@ public class LoginView {
     }
 
 
-    public Customer playLogin() {
+    public void playLogin() {
         System.out.println("Introduceti datele de logare.");
         System.out.println("Introduceti email:");
         String email = scanner.nextLine();
         customer = customerService.checkEmail(email);
         if (customer == null) {
-            System.out.println("Email gresit");
-            return null;
+            admin = adminService.getAdmin(email);
+            if(admin == null) {
+                System.out.println("email necorespunzator");
+                return;
+            }
+            System.out.println("Introduceti password");
+            String password = scanner.nextLine();
+            if(password.equals(admin.getPassword())) {
+                AdminView adminView = new AdminView(admin);
+                adminView.play();
+            }else{
+                System.out.println("Admin Password doesn't match");
+                return;}
         }
         System.out.println("Introduceti password:");
         String password = scanner.nextLine();
         if(password.equals(customer.getPassword())) {
              CustomerView customerView = new CustomerView(customer);
              customerView.play();
+        }else{
+            System.out.println("Customer password doesn't match");
         }
-        return null;
-    }
-
-    public Admin playAdminLogin() {
-        System.out.println("Introduceti email:");
-        String email = scanner.nextLine();
-        admin = adminService.getAdmin(email);
-        if (admin == null) {
-            System.out.println("Email gresit");
-            return null;
-        }
-        System.out.println("Introduceti password:");
-        String password = scanner.nextLine();
-        if(password.equals(admin.getPassword())) {
-            AdminView adminView = new AdminView();
-            adminView.play();
-        }
-        return null;
     }
 
     public void registerCustomer() {

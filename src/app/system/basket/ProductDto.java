@@ -8,6 +8,14 @@ public class ProductDto {
     private double productPrice;
     private int productQuantity;
 
+    public ProductDto(int id, int productId, String productName, double productPrice, int productQuantity, int sales) {
+        this.id = id;
+        this.productId = productId;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productQuantity = productQuantity;
+    }
+
     public ProductDto(int id, int productId, String productName, double pret, int quantity) {
         this.id = id;
         this.productId = productId;

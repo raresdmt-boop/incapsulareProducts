@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class OrderService {
@@ -38,21 +39,7 @@ public class OrderService {
         return null;
     }
 
-    public ArrayList<Product> getBasket(Customer customer) {
-        ArrayList<Order> customerOrders = getCustomerOrders(customer);
-        Order basketOrder = null;
-        for (int i = 0; i < customerOrders.size(); i++) {
-            Order order = customerOrders.get(i);
-            if (order.getOrderStatus().contains("BASKET")) {
-                basketOrder = order;
-            }
-        }
-        if (basketOrder == null) {
-            return new ArrayList<>();
-        }
-        OrderDetailsService orderDetailsService = new OrderDetailsService();
-        return orderDetailsService.productsFromOrder(basketOrder);
-    }
+
     public int generateOrderID() {
         int id = 0;
         for (int i = 0; i < orderList.size(); i++) {
@@ -83,6 +70,39 @@ public class OrderService {
             total += (int) order.getAmount();
         }
         return total;
+    }
+
+    public List<Integer> buyingCustomersIDs(){
+        List<Integer> customerIDs = new ArrayList<>();
+        for(int i = 0; i < orderList.size(); i++){
+            customerIDs.add(orderList.get(i).getCustomerId());
+        }
+        return customerIDs;
+    }
+
+    public double amountSpentOnSite(int customerID){
+        double amount = 0;
+        for(int i = 0; i < orderList.size(); i++){
+            if(orderList.get(i).getCustomerId() == customerID){
+                amount+= orderList.get(i).getAmount();
+            }
+        }
+        return amount;
+    }
+
+    public int bestCustomerID(){
+        List<Integer> customerIDs = buyingCustomersIDs();
+        int bestCustomerID = 0;
+        double maxAmount = 0;
+        for(int i = 0; i < customerIDs.size(); i++) {
+            double amountSpent = amountSpentOnSite(customerIDs.get(i));
+            if (amountSpent > maxAmount) {
+                bestCustomerID = customerIDs.get(i);
+                maxAmount = amountSpent;
+            }
+
+        }
+        return bestCustomerID;
     }
 
     @Override

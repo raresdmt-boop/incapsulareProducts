@@ -7,12 +7,13 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 import java.util.Scanner;
 
 public class ProductService {
     private final File productsFile;
     private final ArrayList<Product> productList;
-    private ArrayList<Product> basket;
+
 
     public ProductService() {
         this.productList = new ArrayList<>();
@@ -20,10 +21,21 @@ public class ProductService {
         loadProducts();
     }
 
-    public String descriereProdus(int id) {
-        return productList.get(id).toString();
+    public ArrayList<Product> getStockEmergencies() {
+        ArrayList<Product> stockEmergencies = new ArrayList<>();
+        for(int i=0;i<5;i++){
+            Product minStockProd=null;
+            for(Product product:productList){
+                if( minStockProd==null || (product.getStock()<minStockProd.getStock() && !stockEmergencies.contains(product))){
+                    minStockProd=product;
+                }
+            }
+            if(minStockProd!=null){
+                stockEmergencies.add(minStockProd);
+            }
+        }
+        return stockEmergencies;
     }
-
     public String getProductNameById(int productId) {
         for (int i = 0; i < productList.size(); i++) {
             if (productList.get(i).getID() == productId) {
@@ -40,6 +52,14 @@ public class ProductService {
         }
         return null;
     }
+    public Product getProductBySkuId(int skuId) {
+        for (Product product : productList) {
+            if(product.getSKU() == skuId){
+                return product;
+            }
+        }
+        return null;
+        }
 
 
     //todo: metode pt basket
@@ -67,6 +87,22 @@ public class ProductService {
     public void editStock(ProductDto productDto) {
         Product product = getProductByDto(productDto);
         product.setStock(product.getStock()-productDto.getProductQuantity());
+        saveProducts();
+    }
+
+    //todo: metode pentru admin
+    public void editStock(Product product, int newStock) {
+        product.setStock(newStock);
+        saveProducts();
+    }
+
+    public void deleteProduct(Product product){
+        productList.remove(product);
+        saveProducts();
+    }
+
+    public void addProduct(Product product){
+        productList.add(product);
         saveProducts();
     }
 
@@ -109,6 +145,29 @@ public class ProductService {
         }
 
     }
+
+    public int generateProductId(){
+        return productList.size()+1;
+    }
+    public int generateSKU(){
+        Random rand = new Random();
+
+        int sku = rand.nextInt(9999)+1;
+        while(getProductBySkuId(sku) != null){
+            sku = rand.nextInt(9999)+1;
+        }
+        return sku;
+    }
+
+    public Product getProductByID(int id){
+        for(int i=0; i < productList.size(); i++){
+            if(productList.get(i).getID() == id){
+                return productList.get(i);
+            }
+        }
+        return null;
+    }
+
 
 
 }

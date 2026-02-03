@@ -40,61 +40,48 @@ public class Product {
     public int getID() {
         return id;
     }
-
     public void setID(int id) {
         validateID(id);
         this.id = id;
     }
-
     public int getSKU() {
         return sku;
     }
-
     public void setSKU(int sku) {
         validateSKU(sku);
         this.sku = sku;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         validateName(name);
         this.name = name;
     }
-
     public double getPrice() {
         return price;
     }
-
     public void setPrice(double price) {
         validatePrice(price);
         this.price = price;
     }
-
     public double getWeight() {
         return weight;
     }
-
     public void setWeight(double weight) {
         validateWeight(weight);
         this.weight = weight;
     }
-
     public String getDescriptions() {
         return descriptions;
     }
-
     public void setDescriptions(String descriptions) {
         validateDescriptions(descriptions);
         this.descriptions = descriptions;
     }
-
     public int getStock() {
         return stock;
     }
-
     public void setStock(int stock) {
         validateStock(stock);
         this.stock = stock;
@@ -106,37 +93,31 @@ public class Product {
             throw new IllegalArgumentException("ID should be greater than 0");
         }
     }
-
     private void validateSKU(int sku) {
         if (sku < 0) {
             throw new IllegalArgumentException("SKU should be greater than 0");
         }
     }
-
     private void validateName(String name) {
         if (name == null) {
             throw new IllegalArgumentException("Name should not be null");
         }
     }
-
     private void validatePrice(double price) {
         if (price < 0) {
             throw new IllegalArgumentException("Price should be greater than 0");
         }
     }
-
     private void validateWeight(double weight) {
         if (weight < 0) {
             throw new IllegalArgumentException("Weight should be greater than 0");
         }
     }
-
     private void validateDescriptions(String descriptions) {
         if (descriptions == null) {
             throw new IllegalArgumentException("Descriptions should not be null");
         }
     }
-
     private void validateStock(int stock) {
         if (stock < 0) {
             throw new IllegalArgumentException("Stock should be greater than 0");

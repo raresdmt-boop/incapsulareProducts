@@ -2,7 +2,6 @@ package app.orderDetails;
 
 import app.orders.Order;
 import app.products.Product;
-import app.products.ProductService;
 import app.system.basket.Basket;
 import app.system.basket.ProductDto;
 
@@ -37,17 +36,6 @@ public class OrderDetailsService {
         return productIdList;
     }
 
-    public ArrayList<Product> productsFromOrder(Order order) {
-        ArrayList<Product> products = new ArrayList<>();
-        for (int i = 0; i < orderDetailsList.toArray().length; i++) {
-            if (orderDetailsList.get(i).getOrderID() == order.getId()) {
-                ProductService productService = new ProductService();
-                String productname = productService.getProductNameById(orderDetailsList.get(i).getProductID());
-                products.add(productService.getProductByName(productname));
-            }
-        }
-        return products;
-    }
 
 
     @Override
@@ -110,6 +98,42 @@ public class OrderDetailsService {
         }
         saveOrderDetails();
     }
+
+    public List<Integer> getSoldProductsIDs() {
+        List<Integer> soldProducts = new ArrayList<>();
+        for (int i = 0; i < orderDetailsList.size(); i++) {
+            soldProducts.add(orderDetailsList.get(i).getProductID());
+        }
+        return soldProducts;
+    }
+
+    public int howManyTimesSold(int productID){
+        int contor=0;
+        for (int i = 0; i < orderDetailsList.size(); i++) {
+            if (orderDetailsList.get(i).getProductID() == productID){
+                contor+=orderDetailsList.get(i).getQuantity();
+            }
+        }
+        return contor;
+    }
+
+    public int bestSellerID(){
+        List<Integer> soldProductsID = getSoldProductsIDs();
+        int mostSales = 0;
+        int bestSellerID = 0;
+        for (int i = 0; i < soldProductsID.size(); i++) {
+            int sales = howManyTimesSold(soldProductsID.get(i));
+            if(sales>mostSales){
+                bestSellerID = soldProductsID.get(i);
+                mostSales = sales;
+            }
+        }
+        return bestSellerID;
+    }
+
+
+    //functie ce returneaza o lista cu id produselor vandute
+
 
 }
 

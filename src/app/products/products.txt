@@ -24,7 +24,7 @@
 24,2024,Raft Carti,480.0,18.0,Raft din lemn,9
 25,2025,Dulap Haine,2100.0,65.0,Dulap incapator,4
 26,2026,Saltea Ortopedica,1600.0,28.0,Saltea confort ridicat,7
-27,2027,Perna Memory,180.0,1.2,Perna cu spuma memory,32
+27,2027,Perna Memory,180.0,1.2,Perna cu spuma memory,29
 28,2028,Patura Groasa,220.0,2.5,Patura pentru iarna,25
 29,2029,Aspirator,750.0,6.8,Aspirator putere mare,11
 30,2030,Aspirator Robot,1900.0,3.2,Aspirator inteligent,5

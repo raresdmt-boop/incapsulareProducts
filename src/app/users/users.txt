@@ -1,0 +1,10 @@
+ADMIN,1,admin1@gmail.com,admin123,Andrei Popescu,true,
+ADMIN,2,admin2@gmail.com,admin123,Maria Ionescu,false,
+ADMIN,3,admin3@gmail.com,admin123,Cristian Pavel,true,
+CUSTOMER,145,client1@gmail.com,client123,Ioana Petrescu,Bd Independentei 10,Str Lalelelor 5,0722123456
+CUSTOMER,146,client2@gmail.com,client123,Radu Mihai,Str Victoriei 22,Str Victoriei 22,0733123456
+CUSTOMER,147,client3@gmail.com,client123,Elena Stan,Str Libertatii 9,Str Florilor 1,0744123456
+CUSTOMER,148,client4@gmail.com,client123,Vlad Stoica,Str Unirii 15,Str Unirii 15,0755123456
+CUSTOMER,149,client5@gmail.com,client123,Ana Dumitru,Str Horea 3,Str Horea 3,0766123456
+CUSTOMER,9,client6@gmail.com,client123,Mihai Georgescu,Str Mihai Viteazu 8,Str Mihai Viteazu 8,0777123456
+CUSTOMER,10,client7@gmail.com,client123,Alina Voicu,Str Republicii 12,Str Republicii 12,0788123456

@@ -1,8 +1,7 @@
 package app.orders;
 
-import app.customers.Customer;
-import app.orderDetails.OrderDetailsService;
-import app.products.Product;
+
+import app.users.Customer;
 
 import java.io.File;
 import java.io.FileWriter;

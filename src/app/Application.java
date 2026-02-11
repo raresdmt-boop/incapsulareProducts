@@ -1,21 +1,16 @@
 package app;
 
-import app.admins.AdminService;
-import app.orderDetails.OrderDetailsService;
-import app.products.Product;
-import app.view.LoginView;
 
-import java.util.ArrayList;
+import app.view.View;
+import app.view.LoginView;
 
 public class Application {
 
     static void main() {
 
+        View view = new LoginView();
 
-        LoginView loginView = new LoginView();
-
-
-
+        view.play();
 
 
 

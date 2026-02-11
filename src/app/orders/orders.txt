@@ -9,3 +9,4 @@
 5009,148,3350.0,Soseaua Nordului 88,Soseaua Nordului 88,client148@email.com,2025-01-13,SHIPPED
 5010,149,1500.0,Strada Dorobanti 22,Strada Dorobanti 22,client149@email.com,2025-01-14,DELIVERED
 5011,145,520.0,alabala,alabala,raresdmt@yahoo.com,26/01/26,Pending Payment
+5012,145,180.0,Str Lalelelor 5,Bd Independentei 10,client1@gmail.com,26/01/26,Pending Payment

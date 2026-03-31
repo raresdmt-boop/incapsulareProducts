@@ -1,80 +1,68 @@
 package app.view;
 
-import app.users.Admin;
-import app.users.Customer;
-import app.users.User;
-import app.users.UserService;
+import app.users.models.Admin;
+import app.users.models.Customer;
+import app.users.models.User;
+import app.users.services.UserCommandServiceImpl;
+import app.users.services.UserCommandServiceSingleton;
+import app.users.services.UserQueryServiceImpl;
+import app.users.services.UserQueryServiceSingleton;
+import app.users.services.interfaces.UserCommandService;
+import app.users.services.interfaces.UserQueryService;
 
 import java.util.Scanner;
 
-public class LoginView  extends View{
+public class LoginView extends BaseView {
 
-    private  UserService userService = new UserService();
-
+    private final UserCommandService userCommandService;
+    private final UserQueryService userQueryService;
 
     public LoginView(){
         super();
-        createMeniu();
-
-        if(user == null) {
-            playLogin();
-        }
-        if(user instanceof Admin) {
-            View adminView = new AdminView();
-        }
-        if(user instanceof Customer) {
-            View customerView = new CustomerView();
-        }
-
+        userCommandService = UserCommandServiceSingleton.getInstance();
+        userQueryService = UserQueryServiceSingleton.getInstance();
+        play();
     }
 
-    public void playLogin(){
-        System.out.println("Welcome to Login View");
-        System.out.println(meniu);
-        int alegere=Integer.parseInt(sc.next());
-        sc.nextLine();
-        switch(alegere){
+    @Override
+    protected void meniu() {
+        System.out.println("Login View meniu");
+        System.out.println("1->Login.");
+        System.out.println("2->Register.");
+    }
+
+    @Override
+    protected boolean getOption(int option) {
+        switch (option) {
             case 1:
                 login();
-                break;
+                return true;
+            case 2:
+                register();
+                return true;
+            default:
+                System.out.println("Invalid option");
+                return true;
         }
     }
 
-    private void createMeniu() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("1. Login\n");
-        builder.append("2. Register\n");
-        builder.append("3. Forgot Password\n");
-        super.meniu = builder.toString();
-
-    }
-
-    public void login(){
-        System.out.println("Introduceti email");
+    public void login() {
+        System.out.println("Introduceti username/email");
         String email = sc.nextLine();
         System.out.println("Introduceti password");
         String password = sc.nextLine();
-        super.user = userService.loggin(email,password);
-        if(user==null){
-            System.out.println("Date de logare gresite");
+        User user = userQueryService.getUserbyEmailAndPassword(email, password);
+        if (user == null) {
+            System.out.println("Invalid username or password");
+            return;
+        }
+        if(user instanceof Admin){
+            AdminView adminView = new AdminView(user);
+        }
+        else if(user instanceof Customer){
+            CustomerView customerView = new CustomerView(user);
         }
     }
 
-    public void register(){
-        System.out.println("Introduceti email");
-        String email = sc.nextLine();
-        System.out.println("Introduceti password");
-        String password = sc.nextLine();
-        System.out.println("Introduceti fullname");
-        String fullname = sc.nextLine();
-        System.out.println("Introduceti billing address");
-        String billingAddress = sc.nextLine();
-        System.out.println("Introduceti shipping address");
-        String shippingAddress = sc.nextLine();
-        System.out.println("Introduceti phone");
-        String phone = sc.nextLine();
-        int id= userService.generateID();
-        User user = new User(id, email, password, fullname, billingAddress, shippingAddress, phone)
-        userService.addUser();
-    }
+    public void register() {}
 }

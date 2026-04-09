@@ -1,3 +1,0 @@
-1,admin1@example.com,parola123,Andrei,Popescu
-2,admin2@example.com,admin456,Maria,Ionescu
-3,admin3@example.com,secure789,Alex,Dumitrescu

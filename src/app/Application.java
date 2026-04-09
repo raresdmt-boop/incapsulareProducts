@@ -1,23 +1,21 @@
 package app;
 
-import app.admins.AdminService;
-import app.orderDetails.OrderDetailsService;
-import app.products.Product;
+
+
+import app.users.models.Customer;
+import app.users.models.Permissions;
+import app.users.models.User;
+import app.users.repository.UserRepository;
+import app.users.repository.UserRepositorySingleton;
+import app.view.BaseView;
 import app.view.LoginView;
 
-import java.util.ArrayList;
 
 public class Application {
 
     static void main() {
 
-
-        LoginView loginView = new LoginView();
-
-
-
-
-
+        BaseView baseView = new LoginView();
 
     }
 }

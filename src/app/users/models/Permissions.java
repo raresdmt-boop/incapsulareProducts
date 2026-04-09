@@ -1,0 +1,18 @@
+package app.users.models;
+
+public enum Permissions {
+
+    VIEW_PRODUCTS,
+    MANAGE_CART,
+    PLACE_ORDER,
+    VIEW_OWN_ORDERS,
+    VIEW_USERS,
+    VIEW_ALL_ORDERS,
+    VIEW_ORDER_DETAILS,
+    MANAGE_PRODUCTS,
+    VIEW_PRODUCT_DETAILS,
+    MANAGE_USER_DETAILS,
+    MANAGE_OWN_USER_DETAILS,
+    MANAGE_PERMISSIONS,
+
+}

@@ -1,8 +1,8 @@
 package app.products.repository;
 
 import app.products.comparators.ProductIDComparator;
-import app.products.request.ProductRequest;
 import app.products.models.Product;
+import app.products.request.ProductRequest;
 
 import java.io.File;
 import java.io.FileWriter;

@@ -1,8 +1,8 @@
 package absolete.view;
 
+import absolete.Customer;
 import absolete.Order;
 import absolete.OrderService;
-import absolete.Customer;
 
 import java.util.List;
 

@@ -3,8 +3,6 @@ package app.view;
 import app.users.models.Permissions;
 import app.users.models.User;
 
-import java.security.Permission;
-
 public abstract class AuthorizedView extends BaseView {
 
     protected final User user;

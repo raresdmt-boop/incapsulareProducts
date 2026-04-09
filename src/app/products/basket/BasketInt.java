@@ -2,7 +2,6 @@ package app.products.basket;
 
 
 import app.products.basket.dto.ProductDto;
-import app.products.models.Product;
 
 import java.util.List;
 

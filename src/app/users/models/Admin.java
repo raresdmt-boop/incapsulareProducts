@@ -1,8 +1,5 @@
 package app.users.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Admin extends User {
 
     private boolean managerialLevel;

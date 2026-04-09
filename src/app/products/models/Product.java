@@ -1,7 +1,6 @@
 package app.products.models;
 
 import app.products.exceptions.*;
-import app.products.exceptions.*;
 
 import java.util.Objects;
 

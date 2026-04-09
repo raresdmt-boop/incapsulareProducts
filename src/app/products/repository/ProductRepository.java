@@ -1,7 +1,7 @@
 package app.products.repository;
 
-import app.products.request.ProductRequest;
 import app.products.models.Product;
+import app.products.request.ProductRequest;
 
 import java.util.List;
 import java.util.Optional;

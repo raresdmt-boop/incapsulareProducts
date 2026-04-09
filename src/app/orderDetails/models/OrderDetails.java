@@ -1,7 +1,6 @@
 package app.orderDetails.models;
 
 import app.orderDetails.exceptions.*;
-import app.orderDetails.exceptions.*;
 
 public class OrderDetails {
 

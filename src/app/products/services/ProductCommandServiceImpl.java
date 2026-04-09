@@ -1,10 +1,10 @@
 package app.products.services;
 
-import app.products.request.ProductRequest;
 import app.products.exceptions.ProductNotFound;
 import app.products.models.Product;
 import app.products.repository.ProductRepository;
 import app.products.repository.ProductRepositorySingleton;
+import app.products.request.ProductRequest;
 import app.products.services.interfaces.ProductCommandService;
 
 import java.util.Optional;

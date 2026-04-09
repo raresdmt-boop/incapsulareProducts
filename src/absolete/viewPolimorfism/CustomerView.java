@@ -1,12 +1,8 @@
 package absolete.viewPolimorfism;
 
-import absolete.OrderDetailsService;
-import absolete.Order;
-import absolete.OrderService;
-import absolete.ProductService;
+import absolete.*;
 import absolete.system.basket.Basket;
 import absolete.system.basket.ProductDto;
-import absolete.Customer;
 
 import java.util.List;
 import java.util.Scanner;

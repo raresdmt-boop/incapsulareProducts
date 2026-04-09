@@ -1,7 +1,6 @@
 package app;
 
 import app.users.factory.UserFactory;
-import app.users.factory.UserFactoryImpl;
 import app.users.factory.UserFactorySingleton;
 
 public class TestFactory3 {

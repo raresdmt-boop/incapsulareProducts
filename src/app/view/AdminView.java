@@ -3,7 +3,6 @@ package app.view;
 import app.orders.services.OrderQueryServiceSingleton;
 import app.orders.services.interfaces.OrderQueryService;
 import app.users.models.Admin;
-import app.users.models.Customer;
 import app.users.models.Permissions;
 import app.users.models.User;
 import app.users.services.UserQueryServiceSingleton;

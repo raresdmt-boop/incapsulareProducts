@@ -1,6 +1,7 @@
 package app.products.basket.dto;
 
-import app.products.exceptions.*;
+import app.products.exceptions.ProductDtoQuantityCannotBeNegative;
+import app.products.exceptions.ProductNameCannotBeNull;
 
 public class ProductDto {
 

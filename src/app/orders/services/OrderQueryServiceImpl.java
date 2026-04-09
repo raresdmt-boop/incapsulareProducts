@@ -6,7 +6,6 @@ import app.orders.repository.OrderRepository;
 import app.orders.repository.OrderRepositorySingleton;
 import app.orders.services.interfaces.OrderQueryService;
 
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;

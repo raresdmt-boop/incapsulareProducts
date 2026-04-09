@@ -1,17 +1,12 @@
 package app.users.services;
 
-import app.users.dtos.AdminRequest;
-import app.users.dtos.CustomerRequest;
 import app.users.dtos.UserRequest;
-import app.users.dtos.UserRequestType;
 import app.users.exceptions.UserEmailAlreadyExists;
 import app.users.exceptions.UserNotFound;
 import app.users.factory.UserFactory;
-import app.users.factory.UserFactoryImpl;
 import app.users.factory.UserFactorySingleton;
 import app.users.models.User;
 import app.users.repository.UserRepository;
-import app.users.repository.UserRepositoryImpl;
 import app.users.repository.UserRepositorySingleton;
 import app.users.services.interfaces.UserCommandService;
 

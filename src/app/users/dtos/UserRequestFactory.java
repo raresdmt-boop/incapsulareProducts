@@ -1,8 +1,6 @@
 package app.users.dtos;
 
 
-import app.users.models.User;
-
 public interface UserRequestFactory {
 
 

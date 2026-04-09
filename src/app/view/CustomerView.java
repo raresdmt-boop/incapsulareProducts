@@ -5,7 +5,6 @@ import app.products.basket.BasketInt;
 import app.products.basket.dto.ProductDto;
 import app.products.exceptions.BasketQuantityCannotExceedProductStock;
 import app.products.exceptions.ProductNotFound;
-import app.products.models.Product;
 import app.products.services.ProductQueryServiceSingleton;
 import app.products.services.interfaces.ProductQueryService;
 import app.users.models.User;

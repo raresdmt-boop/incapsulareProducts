@@ -4,11 +4,7 @@ package app.users.repository;
 import app.users.comparators.UserIDComparator;
 import app.users.dtos.UserRequest;
 import app.users.factory.UserFactory;
-import app.users.factory.UserFactoryImpl;
 import app.users.factory.UserFactorySingleton;
-import app.users.models.Admin;
-import app.users.models.Customer;
-import app.users.models.Permissions;
 import app.users.models.User;
 
 import java.io.File;

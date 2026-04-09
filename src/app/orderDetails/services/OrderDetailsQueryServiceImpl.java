@@ -4,7 +4,6 @@ import app.orderDetails.models.OrderDetails;
 import app.orderDetails.repository.OrderDetailsRepository;
 import app.orderDetails.repository.OrderDetailsRepositorySingleton;
 import app.orderDetails.services.interfaces.OrderDetailsQueryService;
-import app.orders.repository.OrderRepositorySingleton;
 
 import java.util.Comparator;
 import java.util.List;

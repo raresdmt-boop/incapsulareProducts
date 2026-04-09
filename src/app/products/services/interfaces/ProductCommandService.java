@@ -1,7 +1,7 @@
 package app.products.services.interfaces;
 
-import app.products.request.ProductRequest;
 import app.products.models.Product;
+import app.products.request.ProductRequest;
 
 public interface ProductCommandService {
 

@@ -2,7 +2,6 @@ package app.products.basket;
 
 import app.products.basket.dto.ProductDto;
 import app.products.exceptions.ProductNotFound;
-import app.products.models.Product;
 import app.products.services.ProductQueryServiceSingleton;
 import app.products.services.interfaces.ProductQueryService;
 

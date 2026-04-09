@@ -1,7 +1,6 @@
 package app.orderDetails.dtos;
 
 import app.orderDetails.exceptions.*;
-import app.orderDetails.exceptions.*;
 import app.orderDetails.models.OrderDetails;
 
 public class OrderDetailsRequest {

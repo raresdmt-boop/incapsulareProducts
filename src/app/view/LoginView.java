@@ -3,14 +3,10 @@ package app.view;
 import app.users.models.Admin;
 import app.users.models.Customer;
 import app.users.models.User;
-import app.users.services.UserCommandServiceImpl;
 import app.users.services.UserCommandServiceSingleton;
-import app.users.services.UserQueryServiceImpl;
 import app.users.services.UserQueryServiceSingleton;
 import app.users.services.interfaces.UserCommandService;
 import app.users.services.interfaces.UserQueryService;
-
-import java.util.Scanner;
 
 public class LoginView extends BaseView {
 

@@ -1,14 +1,7 @@
 package absolete.viewvechi;
 
 
-
-import absolete.OrderDetailsService;
-import absolete.OrderService;
-import absolete.Product;
-import absolete.ProductService;
-import absolete.Admin;
-import absolete.Customer;
-import absolete.UserService;
+import absolete.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;

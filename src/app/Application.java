@@ -15,20 +15,7 @@ public class Application {
 
     static void main() {
 
+        BaseView baseView = new LoginView();
 
-//        User user = new Customer(199, "ASASASASA", "AAA","AAA", "AAA","AAA",
-//                "AAAA");
-//        System.out.println("Customer ID: " + user.getId());
-//        user.addPermissions(Permissions.MANAGE_OWN_USER_DETAILS);
-//        user.addPermissions(Permissions.MANAGE_CART);
-//        user.addPermissions(Permissions.VIEW_ALL_ORDERS);
-//
-//
-//        if(user.hasPermissions(Permissions.MANAGE_OWN_USER_DETAILS)){
-//            System.out.println("Customer ID: " + user.getId());
-//        }
-
-        UserRepository userRepository = UserRepositorySingleton.getInstance();
-        System.out.println(userRepository.getAll());
     }
 }

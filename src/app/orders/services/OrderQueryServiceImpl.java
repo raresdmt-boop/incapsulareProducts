@@ -35,14 +35,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 
     @Override
     public Order getBestOrder(Comparator<Order> comparator) {
-        List<Order> orders = orderRepository.getAll();
-        Order bestOrder = orders.get(0);
-        for(Order order : orders) {
-            if(comparator.compare(bestOrder, order) < 0) {
-                bestOrder = order;
-            }
-        }
-        return bestOrder;
+        return orderRepository.getAll().stream().max(comparator).get();
     }
 
     @Override

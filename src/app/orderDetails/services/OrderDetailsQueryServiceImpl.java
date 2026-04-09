@@ -23,13 +23,9 @@ public class OrderDetailsQueryServiceImpl implements OrderDetailsQueryService {
 
     @Override
     public OrderDetails getBestOrderDetails(Comparator<OrderDetails> cmp) {
-        List<OrderDetails> allOrderDetails = getAllOrderDetails();
-        OrderDetails bestOrderDetail = null;
-        for(OrderDetails orderDetails : allOrderDetails) {
-            if(cmp.compare(orderDetails, bestOrderDetail) > 0) {
-                bestOrderDetail = orderDetails;
-            }
-        }
-        return bestOrderDetail;
+        return orderDetailsRepository.getAll()
+                .stream()
+                .max(cmp)
+                .orElse(null);
     }
 }

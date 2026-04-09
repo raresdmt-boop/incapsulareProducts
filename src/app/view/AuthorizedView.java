@@ -15,7 +15,7 @@ public abstract class AuthorizedView extends BaseView {
     }
 
     protected boolean hasPermission(Permissions permission) {
-        return false;
+        return user.hasPermissions(permission);
     }
 
     protected abstract void validatePermission();

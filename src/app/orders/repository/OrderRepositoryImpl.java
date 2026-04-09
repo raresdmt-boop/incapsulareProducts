@@ -1,5 +1,6 @@
 package app.orders.repository;
 
+import app.orders.comparators.OrderIdComparer;
 import app.orders.dtos.OrderRequest;
 import app.orders.models.Order;
 
@@ -44,12 +45,8 @@ public class OrderRepositoryImpl implements OrderRepository {
         }
     }
     public boolean idExists(int id){
-        for(Order order:orders){
-            if(order.getId()==id){
-                return true;
-            }
-        }
-        return false;
+        return orders.stream()
+                .anyMatch(order -> order.getId() == id);
     }
     public int generateOrderId(){
         Random rand = new Random();
@@ -60,33 +57,28 @@ public class OrderRepositoryImpl implements OrderRepository {
         return orderId;
     }
     public Order getOrder(int id){
-        for(Order order:orders){
-            if(order.getId()==id){
-                return order;
-            }
-        }
-        return null;
+        return orders.stream()
+                .filter(order -> order.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
     public String toString(){
         StringBuffer sb = new StringBuffer();
-        int i=0;
-        for(;i<orders.size()-1;i++){
-            sb.append(orders.get(i) + "\n");
-        }
-        sb.append(orders.get(i));
+        orders.stream()
+                .limit(orders.size()-1)
+                .forEach(order -> sb.append(order.toString()).append("\n"));
+        sb.append(orders.stream()
+                .max(new OrderIdComparer()));
         return sb.toString();
     }
 
     @Override
     public Optional<Order> findById(int id) {
-        for(Order order:orders){
-            if(order.getId()==id){
-                return Optional.of(order);
-            }
-        }
-        return Optional.empty();
+        return orders.stream()
+                .filter(order -> order.getId() == id)
+                .findFirst();
     }
 
     @Override
@@ -126,12 +118,10 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public Order getOrderById(int id) {
-        for(Order order:orders){
-            if(order.getId()==id){
-                return order;
-            }
-        }
-        return null;
+        return orders.stream()
+                .filter(order -> order.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
 

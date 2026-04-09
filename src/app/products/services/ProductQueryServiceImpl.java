@@ -23,14 +23,7 @@ public class ProductQueryServiceImpl implements ProductQueryService {
 
     @Override
     public Product getBestProduct(Comparator<Product> comparator) {
-        List<Product> products = productRepository.getAll();
-        Product prod = products.get(0);
-        for(Product p : products) {
-            if(comparator.compare(p, prod) > 0) {
-                prod = p;
-            }
-        }
-        return prod;
+        return productRepository.getAll().stream().max(comparator).get();
     }
 
     @Override

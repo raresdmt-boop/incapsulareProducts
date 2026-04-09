@@ -24,13 +24,9 @@ public class UserQueryServiceImpl implements UserQueryService {
     @Override
     public User getBestUser(Comparator<User> comparator) {
         List<User> users = userRepository.getAll();
-        User bestUser = users.get(0);
-        for(User u : users) {
-            if(comparator.compare(u, bestUser) > 0) {
-                bestUser = u;
-            }
-        }
-        return bestUser;
+        return users.stream()
+                .max(comparator)
+                .get();
     }
 
     @Override

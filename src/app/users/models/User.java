@@ -14,7 +14,7 @@ public class User {
     private String email;
     private String password;
     private String fullName;
-    private List<Permissions> permissions = new ArrayList<>();
+    private final List<Permissions> permissions = new ArrayList<>();
 
     public User(int id, String email, String password, String fullName) {
         setId(id);

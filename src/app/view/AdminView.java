@@ -54,8 +54,7 @@ public class AdminView extends AuthorizedView {
 
     private void vanzariTotale(){
         validatePermission();
-        double vanzari = orderQueryService.getTotal();
-        System.out.println("Vanzari Totale: " + vanzari);
+        System.out.println("Vanzari Totale: " + orderQueryService.getTotal());
     }
 
     private void deletePermission(){

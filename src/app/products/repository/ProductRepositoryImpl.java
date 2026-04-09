@@ -1,5 +1,6 @@
 package app.products.repository;
 
+import app.products.comparators.ProductIDComparator;
 import app.products.request.ProductRequest;
 import app.products.models.Product;
 
@@ -44,12 +45,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
     }
     public boolean IdExists(int id){
-        for(Product p:products){
-            if(p.getID()==id){
-                return true;
-            }
-        }
-        return false;
+        return products.stream().anyMatch((product -> product.getID() == id));
     }
     public int generateProductID(){
         Random rand = new Random();
@@ -60,33 +56,23 @@ public class ProductRepositoryImpl implements ProductRepository {
         return id;
     }
     public Product getProduct(int id){
-        for(Product p:products){
-            if(p.getID()==id){
-                return p;
-            }
-        }
-        return null;
+        return products.stream()
+                .filter((product -> product.getID() == id))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
     public String toString(){
         StringBuffer sb = new StringBuffer();
-        int i=0;
-        for(;i<products.size()-1;i++){
-            sb.append(products.get(i)+"\n");
-        }
-        sb.append(products.get(i));
+        products.stream().limit(products.size()-1).forEach((product -> sb.append(product.toString()+"\n")));
+        sb.append(products.stream().max(new ProductIDComparator()));
         return sb.toString();
     }
 
     @Override
     public Optional<Product> findById(int id) {
-        for(Product p:products){
-            if(p.getID()==id){
-                return Optional.of(p);
-            }
-        }
-        return Optional.empty();
+        return products.stream().filter((product -> product.getID() == id)).findFirst();
     }
 
     @Override
@@ -125,11 +111,9 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Product findByName(String name) {
-        for(Product p:products){
-            if(p.getName().equals(name)){
-                return p;
-            }
-        }
-        return null;
+        return products.stream()
+                .filter((product -> product.getName().equals(name)))
+                .findFirst()
+                .orElse(null);
     }
 }

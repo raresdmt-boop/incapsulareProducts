@@ -1,6 +1,7 @@
 package app.users.repository;
 
 
+import app.users.comparators.UserIDComparator;
 import app.users.dtos.UserRequest;
 import app.users.factory.UserFactory;
 import app.users.factory.UserFactoryImpl;
@@ -50,12 +51,7 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
     public boolean idExists(int id){
-        for(User user : users){
-            if(user.getId() == id){
-                return true;
-            }
-        }
-        return false;
+        return users.stream().anyMatch(user -> user.getId() == id);
     }
     public int generateID(){
         Random rand = new Random();
@@ -66,34 +62,28 @@ public class UserRepositoryImpl implements UserRepository {
         return userId;
     }
     public User getUser(int id){
-        for(User user : users){
-            if(user.getId() == id){
-                return user;
-            }
-        }
-        return null;
+        return users.stream()
+                .filter(user -> user.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
 
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
-        int i=0;
-        for(;i<users.size()-1;i++){
-            sb.append(users.get(i)+"\n");
-        }
-        sb.append(users.get(i));
+        users.stream()
+                .limit(users.size()-1)
+                .forEach(user -> sb.append(user.toString()).append("\n"));
+        sb.append(users.stream().max(new UserIDComparator()));
         return sb.toString();
     }
 
     @Override
     public Optional<User> findByID(int id) {
-        for(User user : users){
-            if(user.getId() == id){
-                return Optional.of(user);
-            }
-        }
-        return Optional.empty();
+        return users.stream()
+                .filter(user -> user.getId() == id)
+                .findFirst();
     }
 
     @Override
@@ -129,32 +119,25 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User getUserByEmail(String email) {
-        for(User user : users){
-            if(user.getEmail().equals(email)){
-                return user;
-            }
-        }
-        return null;
+        return users.stream()
+                .filter(user -> user.getEmail().equals(email))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
     public User getUserByEmailAndPassword(String email, String password) {
-        for(User user : users){
-            if(user.getEmail().equals(email) && user.getPassword().equals(password)){
-                return user;
-            }
-        }
-        return null;
+        return users.stream()
+                .filter(user -> user.getEmail().equals(email) && user.getPassword().equals(password))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        for(User user : users){
-            if(user.getEmail().equals(email)){
-                return Optional.of(user);
-            }
-        }
-        return Optional.empty();
+        return users.stream()
+                .filter(user -> user.getEmail().equals(email))
+                .findFirst();
     }
 
 

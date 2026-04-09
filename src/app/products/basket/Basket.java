@@ -1,7 +1,10 @@
 package app.products.basket;
 
 import app.products.basket.dto.ProductDto;
+import app.products.exceptions.ProductNotFound;
 import app.products.models.Product;
+import app.products.services.ProductQueryServiceSingleton;
+import app.products.services.interfaces.ProductQueryService;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,11 +13,13 @@ import java.util.Scanner;
 
 public class Basket implements BasketInt {
 
+    private final ProductQueryService productQueryService;
     private final List<ProductDto> basketProducts;
     private final File basketFile;
     public Basket() {
         basketProducts = new ArrayList<>();
         basketFile = new File("C:\\mycode\\incapsulare\\teorie\\ProductsApp\\src\\app\\products\\basket\\data\\basket.txt");
+        productQueryService = ProductQueryServiceSingleton.getInstance();
         loadBasket();
     }
 
@@ -39,36 +44,33 @@ public class Basket implements BasketInt {
     }
 
     @Override
-    public ProductDto addBasketProduct(ProductDto productDto) {
-        for(ProductDto product: basketProducts){
-            if(product.getName().equals(productDto.getName())){
-                product.setQuantity(product.getQuantity()+productDto.getQuantity());
-                return product;
-            }
+    public ProductDto addBasketProduct(ProductDto productDto) throws ProductNotFound {
+        if(productQueryService.getProducts().stream().noneMatch(product -> product.getName().equals(productDto.getName()))) {
+            throw new ProductNotFound();
         }
-        basketProducts.add(productDto);
-        return productDto;
+        if(basketProducts.stream().noneMatch(p -> p.getName().equals(productDto.getName()))){
+            basketProducts.add(productDto);
+            return productDto;
+        };
+        ProductDto pdto = basketProducts.stream().filter(p -> p.getName().equals(productDto.getName())).findFirst().get();
+        pdto.setQuantity(productDto.getQuantity() + pdto.getQuantity());
+        return pdto;
+
     }
 
     @Override
     public ProductDto removeBasketProduct(ProductDto productDto) {
-        for(ProductDto product: basketProducts){
-            if(product.getName().equals(productDto.getName())){
-                basketProducts.remove(product);
-                return product;
-            }
+        if(basketProducts.stream().noneMatch(p -> p.getName().equals(productDto.getName()))) {
+            throw new ProductNotFound();
         }
-        return null;
+        ProductDto pdto = basketProducts.stream().filter(p -> p.getName().equals(productDto.getName())).findFirst().get();
+        basketProducts.remove(pdto);
+        return pdto;
     }
 
     @Override
     public ProductDto getDtobyName(String name) {
-        for(ProductDto product: basketProducts){
-            if(product.getName().equals(name)){
-                return product;
-            }
-        }
-        return null;
+        return basketProducts.stream().filter(p -> p.getName().equals(name)).findFirst().get();
     }
 
 }

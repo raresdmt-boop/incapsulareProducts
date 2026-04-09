@@ -1,5 +1,6 @@
 package app.orderDetails.repository;
 
+import app.orderDetails.comparators.OrderDetailsIDComparer;
 import app.orderDetails.dtos.OrderDetailsRequest;
 import app.orderDetails.models.OrderDetails;
 
@@ -47,20 +48,15 @@ public class OrderDetailsRepositoryImpl implements OrderDetailsRepository {
     @Override
     public String toString(){
         StringBuffer sb = new StringBuffer();
-        int i=0;
-        for(; i< orderDetailsList.size()-1; i++){
-            sb.append(orderDetailsList.get(i) + "\n");
-        }
-        sb.append(orderDetailsList.get(i));
+        orderDetailsList.stream()
+                .limit(orderDetailsList.size()-1)
+                .forEach(orderDetails -> {sb.append(orderDetails.toString()+"\n");});
+        sb.append(orderDetailsList.stream().max( new OrderDetailsIDComparer()));
         return sb.toString();
     }
     public boolean idExists(int id) {
-        for(OrderDetails orderDetails: orderDetailsList){
-            if(orderDetails.getId()==id){
-                return true;
-            }
-        }
-        return false;
+        return orderDetailsList.stream()
+                .anyMatch(orderDetails -> orderDetails.getId() == id);
     }
     public int generateOrderDetID(){
         Random rand = new Random();
@@ -71,24 +67,19 @@ public class OrderDetailsRepositoryImpl implements OrderDetailsRepository {
         return orderDetID;
     }
     public OrderDetails getOrderDetails(int id) {
-        for(OrderDetails orderDetails: orderDetailsList){
-            if(orderDetails.getId()==id){
-                return orderDetails;
-            }
-        }
-        return null;
+        return orderDetailsList.stream()
+                .filter(orderDetails -> orderDetails.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
 
 
     @Override
     public Optional<OrderDetails> findById(int id) {
-        for(OrderDetails orderDetails: orderDetailsList){
-            if(orderDetails.getId()==id){
-                return Optional.of(orderDetails);
-            }
-        }
-        return Optional.empty();
+        return  orderDetailsList.stream()
+                .filter(orderDetails -> orderDetails.getId() == id)
+                .findFirst();
     }
 
     @Override
